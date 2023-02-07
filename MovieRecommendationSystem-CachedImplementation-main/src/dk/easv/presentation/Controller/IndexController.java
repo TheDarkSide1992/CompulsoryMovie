@@ -54,6 +54,8 @@ public class IndexController implements Initializable {
         if(logInController.isLoginSuccessful()){
             loadTop("Menu.fxml");
             //TODO Get USer Data
+        } else {
+            System.exit(0);
         }
 
     }
