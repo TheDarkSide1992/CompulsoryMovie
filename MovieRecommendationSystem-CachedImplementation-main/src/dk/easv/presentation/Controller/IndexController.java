@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 
 public class IndexController implements Initializable {
     @FXML BorderPane borderPane;
-    @FXML private Button btnMenu;
     private LogicManager logicManager;
 
     private String userName = "";
