@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -46,15 +47,13 @@ public class IndexController implements Initializable {
         stage.setScene(new Scene(root1));
         stage.showAndWait();
 
-
-
-
         //TODO Gets data form login controller
         userName = logInController.getUserString();
         System.out.println(userName);
 
         if(logInController.isLoginSuccessful()){
             loadTop("Menu.fxml");
+            loadCenter("MovieVindow.fxml");
             //TODO Get USer Data
         } else {
             System.exit(0);
@@ -63,10 +62,12 @@ public class IndexController implements Initializable {
     }
 
     private void loadCenter(String file) throws IOException {
+        //Parent root = FXMLLoader.load(getClass().getResource("presentation/View/" + file));
+        //borderPane.setCenter(root);
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/dk/easv/presentation/View/" + file));
-        BorderPane newScene = loader.load();
-
+        AnchorPane newScene = loader.load();
         borderPane.setCenter(newScene);
     }
 
