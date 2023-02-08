@@ -30,7 +30,6 @@ public class IndexController implements Initializable {
 
         try {
             loadLogIn();
-            loadTop("Menu.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }
