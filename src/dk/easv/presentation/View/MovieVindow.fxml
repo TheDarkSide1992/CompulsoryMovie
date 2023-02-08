@@ -1,75 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="452.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.presentation.Controller.MovieVindowController">
    <children>
-      <ScrollPane layoutX="7.0" layoutY="14.0" prefHeight="430.0" prefWidth="162.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="14.0" prefHeight="430.0" prefWidth="162.0">
          <content>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fx:id="imageView1" fitHeight="150.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </content>
       </ScrollPane>
-      <ScrollPane layoutX="192.0" layoutY="12.0" prefHeight="430.0" prefWidth="162.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="219.0" layoutY="14.0" prefHeight="430.0" prefWidth="162.0">
          <content>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../data/Img/MovieRollRight.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
+            <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="100.0" />
          </content>
       </ScrollPane>
-      <ImageView fx:id="imageView2" fitHeight="150.0" fitWidth="200.0" layoutX="378.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
+      <ScrollPane hbarPolicy="NEVER" layoutX="423.0" layoutY="14.0" prefHeight="430.0" prefWidth="162.0">
+         <content>
+            <VBox fx:id="vBox3" prefHeight="200.0" prefWidth="100.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
