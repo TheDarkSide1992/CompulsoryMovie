@@ -1,6 +1,9 @@
 package dk.easv.presentation.Controller;
 
 import dk.easv.logic.LogicManager;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,9 +17,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
-    @FXML private Button btnLogIn, btnSignUp;
-    @FXML private PasswordField passwordField;
-    @FXML private TextField userId;
+    @FXML private MFXTextField userId;
+    @FXML private MFXButton btnLogIn;
+    @FXML private MFXButton btnSignUp;
+    @FXML private MFXPasswordField passwordField;
 
     private LogicManager logicManager;
     private boolean loginSauces = false;
@@ -42,15 +46,9 @@ public class LogInController implements Initializable {
     }
 
     public void checkIfAnyInput(KeyEvent keyEvent) {
-        if(!userId.getText().equals("")){
-            if(!passwordField.getText().equals("")){
-                btnLogIn.setDisable(false);
-            }
-            else {
-                btnLogIn.setDisable(true);
-            }
-        }
-        else {
+        if(!userId.getText().isEmpty() && !passwordField.getText().isEmpty()){
+            btnLogIn.setDisable(false);
+        } else {
             btnLogIn.setDisable(true);
         }
     }
