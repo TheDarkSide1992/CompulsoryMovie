@@ -20,8 +20,9 @@ import java.util.ResourceBundle;
 
 public class IndexController implements Initializable {
     @FXML BorderPane borderPane;
-    @FXML private Button btnMenu;
     private LogicManager logicManager;
+
+    private String userName = "";
 
 
     @Override
@@ -30,7 +31,6 @@ public class IndexController implements Initializable {
 
         try {
             loadLogIn();
-            loadTop("Menu.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,6 +50,8 @@ public class IndexController implements Initializable {
 
 
         //TODO Gets data form login controller
+        userName = logInController.getUserString();
+        System.out.println(userName);
 
         if(logInController.isLoginSuccessful()){
             loadTop("Menu.fxml");
