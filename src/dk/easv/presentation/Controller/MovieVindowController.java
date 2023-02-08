@@ -1,14 +1,15 @@
 package dk.easv.presentation.Controller;
 
+import dk.easv.entities.Movie;
+import dk.easv.presentation.Model.AppModel;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-import javax.print.attribute.standard.Media;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -18,13 +19,25 @@ import java.util.ResourceBundle;
 
 public class MovieVindowController implements Initializable {
     @FXML private VBox vBox1, vBox2, vBox3;
-
+    private AppModel model = new AppModel();
+    ArrayList<Movie> movieArrayList;
     private ArrayList<VBox> vBoxes;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        getTopAvdRatedMovies();
         createListOfVBox();
         loadImages();
+    }
 
+    private void getTopAvdRatedMovies() {
+        /**
+        ObservableList<Movie> movies = model.getObsTopMovieSeen();
+        movieArrayList = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            Movie movie = movies.get(i);
+            movieArrayList.add(movie);
+        }
+         */
     }
 
     private void createListOfVBox() {
@@ -36,34 +49,37 @@ public class MovieVindowController implements Initializable {
 
     private void loadImages() {
         try {
-            //creating the image object
+            //creating the image object with movie roll
             InputStream stream = new FileInputStream("data/Img/MovieRollRight.png");
             Image image = new Image(stream);
 
             for (VBox vbox: vBoxes) {
                 //Setting image to the image view
                 for (int i = 0; i < 10; i++) {
-                    ImageView imageView = new ImageView();
-                    //Define the size
-                    imageView.setFitHeight(150);
-                    imageView.setFitWidth(147);
-                    /*
-                    //Blend Together
-                    InputStream stream2 = new FileInputStream("data/Img/JokerPoster.png");
-                    Image image2 = new Image(stream2);
-                    ImageView bottom = new ImageView(image2);
-                    ImageView top    = new ImageView(image);
-                    top.setBlendMode(BlendMode.DIFFERENCE);
+                    //GetMoviePoster
+                    InputStream posterInputStream = new FileInputStream("data/Img/JokerPoster.png");
+                    //Image poster = new Image(posterInputStream);
+                    Image poster = new Image("https://www.vintagemovieposters.co.uk/wp-content/uploads/2020/05/IMG_3693-482x715.jpeg");
+
+                    //Define bottom and top
+                    ImageView bottom = new ImageView(poster);
+                    bottom.setFitHeight(160);
+                    bottom.setFitWidth(147);
+                    ImageView top = new ImageView(image);
+                    top.setFitHeight(160);
+                    top.setFitWidth(147);
 
                     Group blend = new Group(
                             bottom,
                             top
                     );
-                    */
 
-                    imageView.setImage(image);
-                    imageView.setPreserveRatio(true);
-                    vbox.getChildren().add(imageView);
+                    //Set a function to the blended image Group
+                    blend.setOnMouseClicked(e ->{
+                        System.out.println("yes");
+                        System.out.println("sucess");
+                });
+                    vbox.getChildren().add(blend);
                 }
             }
 
