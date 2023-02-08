@@ -34,6 +34,8 @@ public class LogInController implements Initializable {
     }
 
     public void logIn(ActionEvent actionEvent) {
+        if(!userId.getText().trim().equals(passwordField.getText().trim())) return;
+
         loginSauces = true;
         userString = userId.getText();
         passwordString = passwordField.getText();
