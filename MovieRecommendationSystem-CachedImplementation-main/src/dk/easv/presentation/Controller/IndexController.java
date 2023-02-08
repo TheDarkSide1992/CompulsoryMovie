@@ -23,6 +23,8 @@ public class IndexController implements Initializable {
     @FXML private Button btnMenu;
     private LogicManager logicManager;
 
+    private String userName = "";
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,6 +51,8 @@ public class IndexController implements Initializable {
 
 
         //TODO Gets data form login controller
+        userName = logInController.getUserString();
+        System.out.println(userName);
 
         if(logInController.isLoginSuccessful()){
             loadTop("Menu.fxml");

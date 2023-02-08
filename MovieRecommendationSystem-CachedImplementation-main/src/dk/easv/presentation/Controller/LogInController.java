@@ -4,7 +4,6 @@ import dk.easv.logic.LogicManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -21,6 +20,8 @@ public class LogInController implements Initializable {
 
     private LogicManager logicManager;
     private boolean loginSauces = false;
+    private String userString = "";
+    private String passwordString = "";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,6 +31,8 @@ public class LogInController implements Initializable {
 
     public void logIn(ActionEvent actionEvent) {
         loginSauces = true;
+        userString = userId.getText();
+        passwordString = passwordField.getText();
         Stage stage = (Stage) btnLogIn.getScene().getWindow();
         stage.close();
     }
@@ -55,5 +58,7 @@ public class LogInController implements Initializable {
     public boolean isLoginSuccessful() {
         return loginSauces;
     }
+
+    public String getUserString() {return  userString;}
 
 }
