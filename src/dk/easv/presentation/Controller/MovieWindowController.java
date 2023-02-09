@@ -84,8 +84,6 @@ public class MovieWindowController implements Initializable {
                     //first we get the IMDB-ID on the movie by searching on its name on OMDB
                     //OMDB does not handle series, It is an experiment with the substring
                     String imdbID = model.searchAddMovieGetimdbID(movie.getTitle().substring(0, 8));
-                    System.out.println("imdb Num " + imdbID);
-
                     Image poster = null;
                     //GetMoviePoster
                     if (imdbID == null) {
