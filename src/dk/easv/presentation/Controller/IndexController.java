@@ -53,7 +53,7 @@ public class IndexController implements Initializable {
 
         if(logInController.isLoginSuccessful()){
             loadTop("Menu.fxml");
-            loadCenter("MovieVindow.fxml");
+            loadCenter("MovieWindow.fxml");
             //TODO Get USer Data
         } else {
             System.exit(0);

@@ -1,7 +1,9 @@
 package dk.easv.presentation.Controller;
 
 import dk.easv.entities.Movie;
+import dk.easv.entities.User;
 import dk.easv.presentation.Model.AppModel;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,27 +19,39 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MovieVindowController implements Initializable {
+public class MovieWindowController implements Initializable {
     @FXML private VBox vBox1, vBox2, vBox3;
     private AppModel model = new AppModel();
-    ArrayList<Movie> movieArrayList;
+
+    private ArrayList<Movie> movieArrayList;
+    private ObservableList<User> users = FXCollections.observableArrayList();
+
+    private User selectedUser;
     private ArrayList<VBox> vBoxes;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        getUserAndLoadData();
         getTopAvdRatedMovies();
         createListOfVBox();
         loadImages();
     }
 
+    private void getUserAndLoadData() {
+        model.loadUsers();
+        users = model.getObsUsers();
+        System.out.println("Users: " + users);
+        selectedUser = users.get(1);
+        //model.loadData(selectedUser);
+    }
+
     private void getTopAvdRatedMovies() {
-        /**
         ObservableList<Movie> movies = model.getObsTopMovieSeen();
         movieArrayList = new ArrayList<>();
-        for (int i = 0; i < 11; i++) {
+        for (int i = 1; i < 11; i++) {
             Movie movie = movies.get(i);
             movieArrayList.add(movie);
         }
-         */
+
     }
 
     private void createListOfVBox() {
@@ -49,35 +63,38 @@ public class MovieVindowController implements Initializable {
 
     private void loadImages() {
         try {
-            //creating the image object with movie roll
+            //creating the MovieRoll object width movie roll
             InputStream stream = new FileInputStream("data/Img/MovieRollRight.png");
-            Image image = new Image(stream);
+            Image MovieRoll = new Image(stream);
 
+            //the racio of a movie poster is 27" x 40"
+            //forholdet 1 i bredde og 1,1 i længde
+            int width = 180;
+            int height = 198;
             for (VBox vbox: vBoxes) {
-                //Setting image to the image view
+                //Setting MovieRoll to the MovieRoll view
                 for (int i = 0; i < 10; i++) {
                     //GetMoviePoster
-                    InputStream posterInputStream = new FileInputStream("data/Img/JokerPoster.png");
-                    //Image poster = new Image(posterInputStream);
                     Image poster = new Image("https://www.vintagemovieposters.co.uk/wp-content/uploads/2020/05/IMG_3693-482x715.jpeg");
 
-                    //Define bottom and top
+                    //Define bottom and top and set height and width
                     ImageView bottom = new ImageView(poster);
-                    bottom.setFitHeight(160);
-                    bottom.setFitWidth(147);
-                    ImageView top = new ImageView(image);
-                    top.setFitHeight(160);
-                    top.setFitWidth(147);
+                    bottom.setFitHeight(height);
+                    bottom.setFitWidth(width);
+                    ImageView top = new ImageView(MovieRoll);
+                    top.setFitHeight(height);
+                    top.setFitWidth(width);
 
                     Group blend = new Group(
                             bottom,
                             top
                     );
 
-                    //Set a function to the blended image Group
+                    String movieTitle = "MovieTitle";
+                    int year = 9999;
+                    //Set a function to the blended MovieRoll Group
                     blend.setOnMouseClicked(e ->{
-                        System.out.println("yes");
-                        System.out.println("sucess");
+                        System.out.println("movie: " + movieTitle + "\t Year: " + year);
                 });
                     vbox.getChildren().add(blend);
                 }
