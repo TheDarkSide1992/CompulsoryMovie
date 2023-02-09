@@ -11,12 +11,12 @@
             <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="100.0" />
          </content>
       </ScrollPane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="338.0" layoutY="17.0" prefHeight="555.0" prefWidth="200.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="244.0" layoutY="14.0" prefHeight="555.0" prefWidth="200.0">
          <content>
             <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="100.0" />
          </content>
       </ScrollPane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="674.0" layoutY="17.0" prefHeight="555.0" prefWidth="200.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="484.0" layoutY="14.0" prefHeight="555.0" prefWidth="200.0">
          <content>
             <VBox fx:id="vBox3" prefHeight="200.0" prefWidth="100.0" />
          </content>
