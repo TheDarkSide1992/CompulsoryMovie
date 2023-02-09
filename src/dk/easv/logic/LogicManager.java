@@ -1,6 +1,7 @@
 package dk.easv.logic;
 
 import dk.easv.dataaccess.DataAccessManager;
+import dk.easv.dataaccess.MyOMDBConnector;
 import dk.easv.entities.*;
 import java.util.*;
 
@@ -8,6 +9,7 @@ public class LogicManager {
 
     DataAccessManager dataMgr = new DataAccessManager();
 
+    MyOMDBConnector omdb = new MyOMDBConnector();
     public void reloadAllDataFromStorage(){
         dataMgr.updateCacheFromDisk();
     }
@@ -114,5 +116,13 @@ public class LogicManager {
         catch (NoSuchElementException e){
             return null;
         }
+    }
+
+    public String searchAddMovieGetimdbID(String title) {
+        return omdb.searchAddMovieGetimdbID(title);
+    }
+
+    public String searchSelectedMovieGetPosterURL(String imdbID) {
+        return omdb.searchSelectedMovieGetPosterURL(imdbID);
     }
 }

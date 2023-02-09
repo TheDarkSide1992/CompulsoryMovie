@@ -6,6 +6,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
@@ -87,5 +88,17 @@ public class AppModel {
             return false;
         else
             return true;
+    }
+
+    public User getUser(String userName) {
+        return logic.getUser(userName);
+    }
+
+    public String searchAddMovieGetimdbID(String title) {
+        return logic.searchAddMovieGetimdbID(title);
+    }
+
+    public String searchSelectedMovieGetPosterURL(String imdbID) {
+        return logic.searchSelectedMovieGetPosterURL(imdbID);
     }
 }

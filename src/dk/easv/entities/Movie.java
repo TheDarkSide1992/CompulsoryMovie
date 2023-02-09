@@ -7,6 +7,7 @@ public class Movie {
     private int id;
     private String title;
     private int year;
+    private String imdbId;
     private List<Rating> ratings;
 
     public Movie(int id, String title, int year) {
@@ -14,6 +15,12 @@ public class Movie {
         this.title = title;
         this.year = year;
         this.ratings = new ArrayList<>();
+    }
+
+    public Movie(String title, int year, String imdbID) {
+        this.imdbId = imdbId;
+        this.title = title;
+        this.year = year;
     }
 
     public double getAverageRating(){
@@ -24,6 +31,10 @@ public class Movie {
         if(ratings.size()==0)
             return 0;
         return sum/ratings.size();
+    }
+
+    public String getImdbId() {
+        return imdbId;
     }
 
     public int getId() {

@@ -31,10 +31,11 @@ public class MovieWindowController implements Initializable {
 
     private ArrayList<Movie> movieArrayList;
     private ObservableList<User> users = FXCollections.observableArrayList();
-
     private ArrayList<VBox> vBoxes;
+    private int numberOfMoviesPrVBox;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        numberOfMoviesPrVBox = 10;
         getUserAndLoadData();
         getTopAvdRatedMovies();
         createListOfVBox();
@@ -44,24 +45,20 @@ public class MovieWindowController implements Initializable {
     private void getUserAndLoadData() {
         model.loadUsers();
         model.loginUserFromUsername("Georgi Facello");
-
     }
 
     private void getTopAvdRatedMovies() {
 
-        LogicManager logicManager = new LogicManager();
-        model.loadData(logicManager.getUser("Georgi Facello"));
+        model.loadData(model.getUser("Georgi Facello"));
 
         movies = model.getArrTopMovieNotSeen();
         movieArrayList = new ArrayList<>();
         if (movies != null) {
-            for (int i = 1; i < 11; i++) {
+            for (int i = 0; i < numberOfMoviesPrVBox; i++) {
                 Movie movie = movies.get(i);
-                System.out.println(movie.getTitle());
                 movieArrayList.add(movie);
             }
         }
-
     }
 
     private void createListOfVBox() {
@@ -78,15 +75,25 @@ public class MovieWindowController implements Initializable {
             Image MovieRoll = new Image(stream);
 
             //the racio of a movie poster is 27" x 40"
-            //forholdet 1 i bredde og 1,1 i længde
+            //forholdet 1 i bredde og 1,1 i længde i den der er lavet her
             int width = 180;
             int height = 198;
             for (VBox vbox: vBoxes) {
                 //Setting MovieRoll to the MovieRoll view
                 for (Movie movie : movieArrayList) {
-                    //GetMoviePoster
-                    Image poster = new Image("https://www.vintagemovieposters.co.uk/wp-content/uploads/2020/05/IMG_3693-482x715.jpeg");
+                    //first we get the IMDB-ID on the movie by searching on its name on OMDB
+                    //OMDB does not handle series, It is an experiment with the substring
+                    String imdbID = model.searchAddMovieGetimdbID(movie.getTitle().substring(0, 8));
+                    System.out.println("imdb Num " + imdbID);
 
+                    Image poster = null;
+                    //GetMoviePoster
+                    if (imdbID == null) {
+                        poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+                    }else{
+                        String posterURL = model.searchSelectedMovieGetPosterURL(imdbID);
+                        poster = new Image(posterURL);
+                    }
                     //Define bottom and top and set height and width
                     ImageView bottom = new ImageView(poster);
                     bottom.setFitHeight(height);
@@ -100,8 +107,6 @@ public class MovieWindowController implements Initializable {
                             top
                     );
 
-                    String movieTitle = "MovieTitle";
-                    int year = 9999;
                     //Set a function to the blended MovieRoll Group
                     blend.setOnMouseClicked(e ->{
                         System.out.println("movie: " + movie.getTitle() + "\t Year: " + movie.getYear());
