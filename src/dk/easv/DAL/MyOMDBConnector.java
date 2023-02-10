@@ -1,5 +1,5 @@
-package dk.easv.dataaccess;
-        import dk.easv.entities.Movie;
+package dk.easv.DAL;
+        import dk.easv.BE.Movie;
 
         import java.io.IOException;
         import java.net.HttpURLConnection;

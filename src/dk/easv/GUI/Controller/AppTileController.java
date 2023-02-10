@@ -1,10 +1,10 @@
-package dk.easv.presentation.Controller;
+package dk.easv.GUI.Controller;
 
-import dk.easv.entities.Movie;
-import dk.easv.entities.TopMovie;
-import dk.easv.entities.User;
-import dk.easv.entities.UserSimilarity;
-import dk.easv.presentation.Model.AppModel;
+import dk.easv.BE.Movie;
+import dk.easv.BE.TopMovie;
+import dk.easv.BE.User;
+import dk.easv.BE.UserSimilarity;
+import dk.easv.GUI.Model.AppModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;

@@ -1,12 +1,10 @@
-package dk.easv.presentation.Model;
+package dk.easv.GUI.Model;
 
-import dk.easv.entities.*;
-import dk.easv.logic.LogicManager;
-import javafx.beans.property.ObjectProperty;
+import dk.easv.BE.*;
+import dk.easv.BLL.LogicManager;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 

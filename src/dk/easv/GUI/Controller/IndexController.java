@@ -1,22 +1,18 @@
-package dk.easv.presentation.Controller;
+package dk.easv.GUI.Controller;
 
-import dk.easv.logic.LogicManager;
+import dk.easv.BLL.LogicManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.security.interfaces.ECKey;
 import java.util.ResourceBundle;
 
 public class IndexController implements Initializable {
@@ -39,7 +35,7 @@ public class IndexController implements Initializable {
 
     private void loadLogIn() throws Exception {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dk/easv/presentation/View/LogIn.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dk/easv/GUI/View/LogIn.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         LogInController logInController = fxmlLoader.getController();
         Stage stage = new Stage();
@@ -66,14 +62,14 @@ public class IndexController implements Initializable {
         //borderPane.setCenter(root);
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/dk/easv/presentation/View/" + file));
+        loader.setLocation(getClass().getResource("/dk/easv/GUI/View/" + file));
         AnchorPane newScene = loader.load();
         borderPane.setCenter(newScene);
     }
 
     private void loadTop(String file) throws IOException{
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/dk/easv/presentation/View/" + file));
+        loader.setLocation(getClass().getResource("/dk/easv/GUI/View/" + file));
         BorderPane newScene = loader.load();
 
         borderPane.setTop(newScene);
@@ -81,7 +77,7 @@ public class IndexController implements Initializable {
 
     private void loadBottom(String file) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/dk/easv/presentation/View/" + file));
+        loader.setLocation(getClass().getResource("/dk/easv/GUI/View/" + file));
         BorderPane newScene = loader.load();
 
         borderPane.setBottom(newScene);
@@ -89,7 +85,7 @@ public class IndexController implements Initializable {
 
     private void loadLeft(String file) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/dk/easv/presentation/View/" + file));
+        loader.setLocation(getClass().getResource("/dk/easv/GUI/View/" + file));
         BorderPane newScene = loader.load();
 
         borderPane.setLeft(newScene);
@@ -97,7 +93,7 @@ public class IndexController implements Initializable {
 
     private void loadRight(String file) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/dk/easv/presentation/View/" + file));
+        loader.setLocation(getClass().getResource("/dk/easv/GUI/View/" + file));
         BorderPane newScene = loader.load();
 
         borderPane.setRight(newScene);
