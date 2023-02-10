@@ -2,12 +2,15 @@ package dk.easv.presentation.Controller;
 
 import dk.easv.entities.Movie;
 import dk.easv.entities.User;
+import dk.easv.logic.LogicManager;
 import dk.easv.presentation.Model.AppModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -17,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MovieWindowController implements Initializable {
@@ -66,61 +70,57 @@ public class MovieWindowController implements Initializable {
 
     private void loadImages() {
         try {
-            //creating the movieRoll object width movie roll
+            //creating the MovieRoll object width movie roll
             InputStream stream = new FileInputStream("data/Img/MovieRollRight.png");
-            Image movieRoll = new Image(stream);
-            Image poster = null;
+            Image MovieRoll = new Image(stream);
+
+            //the racio of a movie poster is 27" x 40"
+            //forholdet 1 i bredde og 1,1 i længde i den der er lavet her
+            int width = 180;
+            int height = 198;
             for (VBox vbox: vBoxes) {
-                //Setting movieRoll to the movieRoll view
-                Group blend = null;
+                //Setting MovieRoll to the MovieRoll view
                 for (Movie movie : movieArrayList) {
-                    //first we get the IMDB-ID on the movie by searching on its name on OMDB.
+                    //first we get the IMDB-ID on the movie by searching on its name on OMDB
                     //OMDB does not handle series, It is an experiment with the substring
                     String imdbID = model.searchAddMovieGetimdbID(movie.getTitle().substring(0, 8));
+                    Image poster = null;
                     //GetMoviePoster
                     if (imdbID == null) {
                         poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
-                    } else {
+                    }else{
                         String posterURL = model.searchSelectedMovieGetPosterURL(imdbID);
                         poster = new Image(posterURL);
                     }
-                    blend = blendImages(poster, movieRoll, movie);
+                    //Define bottom and top and set height and width
+                    ImageView bottom = new ImageView(poster);
+                    bottom.setFitHeight(height);
+                    bottom.setFitWidth(width);
+                    ImageView top = new ImageView(MovieRoll);
+                    top.setFitHeight(height);
+                    top.setFitWidth(width);
+
+                    Group blend = new Group(
+                            bottom,
+                            top
+                    );
+
+                    //Set a function to the blended MovieRoll Group
+                    blend.setOnMouseClicked(e ->{
+                        System.out.println("movie: " + movie.getTitle() + "\t Year: " + movie.getYear());
+                });
                     vbox.getChildren().add(blend);
                 }
             }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
 
 
         //imageView1.setImage(new Image("data/MovieRollRight.png"));
         //Image imProfile = new Image("data/MovieRollRight.png");
         //imageView1 = new ImageView(imProfile);
-
-    private Group blendImages(Image poster, Image movieRoll, Movie movie) {
-        //the racio of a movie poster is 27" x 40"
-        //forholdet 1 i bredde og 1,1 i længde i den der er lavet her
-        int width = 180;
-        int height = 198;
-
-        //Define bottom and top and set height and width
-        ImageView bottom = new ImageView(poster);
-        bottom.setFitHeight(height);
-        bottom.setFitWidth(width);
-        ImageView top = new ImageView(movieRoll);
-        top.setFitHeight(height);
-        top.setFitWidth(width);
-
-        Group blend = new Group(
-                bottom,
-                top
-        );
-        //Set a function to the blended movieRoll Group
-        blend.setOnMouseClicked(e -> {
-            System.out.println("movie: " + movie.getTitle() + "\t Year: " + movie.getYear());
-        });
-        return blend;
     }
 
 
