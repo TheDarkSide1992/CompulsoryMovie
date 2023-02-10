@@ -63,7 +63,8 @@ public class IndexController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/dk/easv/GUI/View/" + file));
-        AnchorPane newScene = loader.load();
+        BorderPane newScene = loader.load();
+
         borderPane.setCenter(newScene);
     }
 
