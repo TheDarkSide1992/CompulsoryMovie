@@ -114,7 +114,7 @@ public class MyOMDBConnector {
     public String searchAddMovieGetimdbID(String query) {
         List<Movie> searchMovies = new ArrayList<>();
         try { //Set up the connection with the query the user has written
-            URL url = new URL("http://www.omdbapi.com/?" + "s=" + query + "&type=movie&apikey=40237601");
+            URL url = new URL("http://www.omdbapi.com/?" + "s=" + query + "&apikey=40237601");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
