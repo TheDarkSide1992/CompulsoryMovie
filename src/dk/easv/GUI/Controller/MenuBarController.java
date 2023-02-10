@@ -1,4 +1,4 @@
-package dk.easv.presentation.Controller;
+package dk.easv.GUI.Controller;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
