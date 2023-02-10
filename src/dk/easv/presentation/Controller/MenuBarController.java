@@ -20,7 +20,7 @@ public class MenuBarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        //No Init
     }
 
     public void lblHomeClicked(MouseEvent mouseEvent) {
