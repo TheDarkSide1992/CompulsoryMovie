@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: grey" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.presentation.Controller.LogInController">
+<BorderPane style="-fx-background-color: grey" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.LogInController">
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="454.0">
          <children>
@@ -30,8 +30,8 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <MFXTextField fx:id="userId" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#checkIfAnyInput" prefHeight="25.0" prefWidth="200.0" />
-                  <MFXPasswordField fx:id="passwordField" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#checkIfAnyInput" prefHeight="25.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                  <MFXTextField fx:id="userId" minHeight="-Infinity" minWidth="-Infinity" onAction="#logIn" onKeyReleased="#checkIfAnyInput" prefHeight="25.0" prefWidth="200.0" />
+                  <MFXPasswordField fx:id="passwordField" minHeight="-Infinity" minWidth="-Infinity" onAction="#logIn" onKeyReleased="#checkIfAnyInput" prefHeight="25.0" prefWidth="200.0" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <GridPane layoutX="153.0" layoutY="184.0" prefHeight="30.0" prefWidth="159.0">
@@ -51,6 +51,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Label fx:id="lblErrorMessage" layoutX="125.0" layoutY="225.0" prefHeight="17.0" prefWidth="199.0" textFill="RED" />
          </children>
       </AnchorPane>
    </center>

@@ -1,8 +1,8 @@
-package dk.easv.logic;
+package dk.easv.BLL;
 
-import dk.easv.dataaccess.DataAccessManager;
-import dk.easv.dataaccess.MyOMDBConnector;
-import dk.easv.entities.*;
+import dk.easv.DAL.DataAccessManager;
+import dk.easv.DAL.MyOMDBConnector;
+import dk.easv.BE.*;
 import java.util.*;
 
 public class LogicManager {

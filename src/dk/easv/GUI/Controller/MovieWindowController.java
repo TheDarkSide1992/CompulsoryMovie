@@ -1,13 +1,14 @@
-package dk.easv.presentation.Controller;
+package dk.easv.GUI.Controller;
 
-import dk.easv.entities.Movie;
-import dk.easv.entities.User;
-import dk.easv.presentation.Model.AppModel;
+import dk.easv.BE.Movie;
+import dk.easv.BE.User;
+import dk.easv.GUI.Model.AppModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -20,6 +21,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MovieWindowController implements Initializable {
+    @FXML private Label lblWatchAgain;
+    @FXML private Label lblCheckOut;
+    @FXML private Label lblRecommend;
     @FXML private VBox vBox1, vBox2, vBox3;
     private AppModel model = new AppModel();
 

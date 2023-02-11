@@ -1,4 +1,4 @@
-package dk.easv.entities;
+package dk.easv.BE;
 
 public class Rating {
     private User user;
