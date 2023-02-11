@@ -21,6 +21,10 @@ public class AppModel {
     private final SimpleObjectProperty<User> obsLoggedInUser = new SimpleObjectProperty<>();
 
     private ArrayList<Movie> arrTopMovieNotSeen = new ArrayList<>();
+    private ArrayList<Movie> arrTopMovieSeen = new ArrayList<>();
+    private ArrayList<TopMovie> arrTopMoviesSimilarUsers = new ArrayList<>();
+
+
     public void loadUsers(){
         obsUsers.clear();
         obsUsers.addAll(logic.getAllUsers());
@@ -29,6 +33,9 @@ public class AppModel {
     public void loadData(User user) {
         obsTopMovieSeen.clear();
         obsTopMovieSeen.addAll(logic.getTopAverageRatedMovies(user));
+
+        arrTopMovieSeen.clear();
+        arrTopMovieSeen.addAll(logic.getTopAverageRatedMovies(user));
 
         obsTopMovieNotSeen.clear();
         obsTopMovieNotSeen.addAll(logic.getTopAverageRatedMoviesUserDidNotSee(user));
@@ -41,6 +48,9 @@ public class AppModel {
 
         obsTopMoviesSimilarUsers.clear();
         obsTopMoviesSimilarUsers.addAll(logic.getTopMoviesFromSimilarPeople(user));
+
+        arrTopMoviesSimilarUsers.clear();
+        arrTopMoviesSimilarUsers.addAll(logic.getTopMoviesFromSimilarPeople(user));
     }
 
     public ObservableList<User> getObsUsers() {
@@ -49,6 +59,9 @@ public class AppModel {
 
     public ObservableList<Movie> getObsTopMovieSeen() {
         return obsTopMovieSeen;
+    }
+    public ArrayList<Movie> getArrTopMovieSeen() {
+        return arrTopMovieSeen;
     }
 
     public ObservableList<Movie> getObsTopMovieNotSeen() {
@@ -65,6 +78,10 @@ public class AppModel {
 
     public ObservableList<TopMovie> getObsTopMoviesSimilarUsers() {
         return obsTopMoviesSimilarUsers;
+    }
+
+    public ArrayList<TopMovie> getArrTopMoviesSimilarUsers() {
+        return arrTopMoviesSimilarUsers;
     }
 
     public User getObsLoggedInUser() {

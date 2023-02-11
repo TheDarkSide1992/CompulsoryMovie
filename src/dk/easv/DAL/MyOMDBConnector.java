@@ -122,7 +122,7 @@ public class MyOMDBConnector {
 
             //Checks the response code the server sends back, 200 = OK
             if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
+                return "N/A";
             } else {
                 StringBuilder informationString = new StringBuilder();
                 Scanner scanner = new Scanner(url.openStream()); //Opens up a Scanner which reads the info retrieved from OMDb

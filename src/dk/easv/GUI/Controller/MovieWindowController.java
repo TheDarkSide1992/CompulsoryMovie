@@ -1,6 +1,7 @@
 package dk.easv.GUI.Controller;
 
 import dk.easv.BE.Movie;
+import dk.easv.BE.TopMovie;
 import dk.easv.BE.User;
 import dk.easv.GUI.Model.AppModel;
 import javafx.collections.FXCollections;
@@ -27,36 +28,63 @@ public class MovieWindowController implements Initializable {
     @FXML private VBox vBox1, vBox2, vBox3;
     private AppModel model = new AppModel();
 
-    private ArrayList<Movie> movies;
+    private ArrayList<Movie> movies = new ArrayList<>();
 
-    private ArrayList<Movie> movieArrayList;
+    private ArrayList<Movie> topAVGRatedMoviesNotSeen;
+    private ArrayList<Movie> topAVGRatedMoviesSeen;
+    private ArrayList<TopMovie> topMoviesFromSimilarUsers;
+
+
     private ObservableList<User> users = FXCollections.observableArrayList();
     private ArrayList<VBox> vBoxes;
     private int numberOfMoviesPrVBox;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        numberOfMoviesPrVBox = 10;
+        numberOfMoviesPrVBox = 20;
         getUserAndLoadData();
-        getTopAvdRatedMovies();
         createListOfVBox();
         loadImages();
     }
-
     private void getUserAndLoadData() {
         model.loadUsers();
         model.loginUserFromUsername("Georgi Facello");
-    }
-
-    private void getTopAvdRatedMovies() {
-
         model.loadData(model.getUser("Georgi Facello"));
 
-        movies = model.getArrTopMovieNotSeen();
-        movieArrayList = new ArrayList<>();
+        getTopAvdRatedMoviesSeen();
+        getTopAvdRatedMoviesNotSeen();
+        getArrTopMoviesSimilarUsers();
+    }
+
+    private void getTopAvdRatedMoviesSeen() {
+        movies.clear();
+        movies = model.getArrTopMovieSeen();
+        topAVGRatedMoviesSeen = new ArrayList<>();
         if (movies != null) {
             for (int i = 0; i < numberOfMoviesPrVBox; i++) {
                 Movie movie = movies.get(i);
-                movieArrayList.add(movie);
+                topAVGRatedMoviesSeen.add(movie);
+            }
+        }
+    }
+    private void getTopAvdRatedMoviesNotSeen() {
+        movies.clear();
+        movies = model.getArrTopMovieNotSeen();
+        topAVGRatedMoviesNotSeen = new ArrayList<>();
+        if (movies != null) {
+            for (int i = 0; i < numberOfMoviesPrVBox; i++) {
+                Movie movie = movies.get(i);
+                topAVGRatedMoviesNotSeen.add(movie);
+            }
+        }
+    }
+
+    private void getArrTopMoviesSimilarUsers() {
+        ArrayList<TopMovie> movies = model.getArrTopMoviesSimilarUsers();
+        topMoviesFromSimilarUsers = new ArrayList<TopMovie>();
+        if (movies != null) {
+            for (int i = 0; i < numberOfMoviesPrVBox; i++) {
+                TopMovie topMovie = movies.get(i);
+                topMoviesFromSimilarUsers.add(topMovie);
             }
         }
     }
@@ -70,16 +98,21 @@ public class MovieWindowController implements Initializable {
 
     private void loadImages() {
         try {
+            ArrayList<ArrayList> arrayListOfMovieLists = new ArrayList<>();
+            arrayListOfMovieLists.add(topAVGRatedMoviesNotSeen);
+            arrayListOfMovieLists.add(topAVGRatedMoviesSeen);
+            arrayListOfMovieLists.add(topMoviesFromSimilarUsers);
             //creating the movieRoll object width movie roll
             InputStream stream = new FileInputStream("data/Img/MovieRollRight.png");
             Image movieRoll = new Image(stream);
 
-            for (VBox vbox: vBoxes) {
-
-                for (Movie movie : movieArrayList) {
+            for (int i = 0; i < 2; i++) {
+                VBox vBox = vBoxes.get(i);
+                ArrayList<Movie> movieList = arrayListOfMovieLists.get(i);
+                for (int b = 0; b < numberOfMoviesPrVBox; b++) {
                     //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
-                    String movieTitleTrimmed = movieTitleTrimmed(movie.getTitle());
-                    String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, movie.getYear());
+                    String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
+                    String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, movieList.get(b).getYear());
                     Image poster = null;
                     //GetMoviePoster
                     if (posterURL.equals("N/A")) {
@@ -90,10 +123,11 @@ public class MovieWindowController implements Initializable {
                     Group blend = makeThePhotoPoster(poster, movieRoll);
 
                     //Set a function to the blended movieRoll Group
+                    int finalB = b;
                     blend.setOnMouseClicked(e ->{
-                        System.out.println("movie: " + movie.getTitle() + "\t Year: " + movie.getYear());
+                        System.out.println("movie: " + movieList.get(finalB).getTitle() + "\t Year: " + movieList.get(finalB).getYear());
                 });
-                    vbox.getChildren().add(blend);
+                    vBox.getChildren().add(blend);
                 }
             }
 
