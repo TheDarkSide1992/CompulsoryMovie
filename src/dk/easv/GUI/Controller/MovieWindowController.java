@@ -87,13 +87,39 @@ public class MovieWindowController implements Initializable {
                 topMoviesFromSimilarUsers.add(topMovie);
             }
         }
+        try {
+            InputStream stream = null;
+            stream = new FileInputStream("data/Img/MovieRollRight.png");
+            Image movieRoll = new Image(stream);
+            for (TopMovie topMovie: topMoviesFromSimilarUsers) {
+                //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
+                String movieTitleTrimmed = movieTitleTrimmed(topMovie.getTitle());
+                String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, topMovie.getYear());
+                Image poster = null;
+                //GetMoviePoster
+                if (posterURL.equals("N/A")) {
+                    poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+                }else{
+                    poster = new Image(posterURL);
+                }
+                Group blend = makeThePhotoPoster(poster, movieRoll);
+                //Set a function to the blended movieRoll Group
+                blend.setOnMouseClicked(e ->{
+                    System.out.println("movie: " + topMovie.getTitle() + "\t Year: " + topMovie.getYear());
+                });
+                vBox3.getChildren().add(blend);
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void createListOfVBox() {
         vBoxes = new ArrayList<>();
         vBoxes.add(vBox1);
         vBoxes.add(vBox2);
-        vBoxes.add(vBox3);
     }
 
     private void loadImages() {
@@ -101,12 +127,11 @@ public class MovieWindowController implements Initializable {
             ArrayList<ArrayList> arrayListOfMovieLists = new ArrayList<>();
             arrayListOfMovieLists.add(topAVGRatedMoviesNotSeen);
             arrayListOfMovieLists.add(topAVGRatedMoviesSeen);
-            arrayListOfMovieLists.add(topMoviesFromSimilarUsers);
             //creating the movieRoll object width movie roll
             InputStream stream = new FileInputStream("data/Img/MovieRollRight.png");
             Image movieRoll = new Image(stream);
 
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < vBoxes.size(); i++) {
                 VBox vBox = vBoxes.get(i);
                 ArrayList<Movie> movieList = arrayListOfMovieLists.get(i);
                 for (int b = 0; b < numberOfMoviesPrVBox; b++) {
