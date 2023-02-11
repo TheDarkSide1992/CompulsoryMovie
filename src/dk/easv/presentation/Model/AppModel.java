@@ -2,11 +2,9 @@ package dk.easv.presentation.Model;
 
 import dk.easv.entities.*;
 import dk.easv.logic.LogicManager;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
@@ -94,11 +92,7 @@ public class AppModel {
         return logic.getUser(userName);
     }
 
-    public String searchAddMovieGetimdbID(String title) {
-        return logic.searchAddMovieGetimdbID(title);
-    }
-
-    public String searchSelectedMovieGetPosterURL(String imdbID) {
-        return logic.searchSelectedMovieGetPosterURL(imdbID);
+    public String searchMovieGetPoster(String title, int year) {
+        return logic.searchMovieGetPoster(title, year);
     }
 }
