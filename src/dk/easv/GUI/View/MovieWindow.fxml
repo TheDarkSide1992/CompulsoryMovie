@@ -11,7 +11,7 @@
 
 <BorderPane prefHeight="323.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieWindowController">
    <top>
-      <GridPane style="-fx-background-color: rgba(0, 0, 0, 0.5) " BorderPane.alignment="CENTER">
+      <GridPane style="-fx-background-color: rgba(0, 0, 0, 0.6) " BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="155.0" />
