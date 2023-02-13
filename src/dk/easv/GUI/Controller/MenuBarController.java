@@ -4,18 +4,20 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MenuBarController implements Initializable {
-    @FXML private Label blbHome;
+    @FXML private Label lblHome;
     @FXML private Label lblMovies;
     @FXML private Label lblTvSeries;
     @FXML private Label lblCat;
     @FXML private Label lblSet;
-    @FXML private MFXTextField fieldSearch;
+    @FXML private TextField fieldSearch;
     @FXML private Label lblUerNameId;
 
     @Override
