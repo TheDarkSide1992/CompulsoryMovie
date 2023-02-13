@@ -4,6 +4,7 @@ import dk.easv.BE.Movie;
 import dk.easv.BE.TopMovie;
 import dk.easv.BE.User;
 import dk.easv.GUI.Model.AppModel;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -134,24 +135,30 @@ public class MovieWindowController implements Initializable {
             for (int i = 0; i < vBoxes.size(); i++) {
                 VBox vBox = vBoxes.get(i);
                 ArrayList<Movie> movieList = arrayListOfMovieLists.get(i);
-                for (int b = 0; b < numberOfMoviesPrVBox; b++) {
-                    //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
-                    String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
-                    String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, movieList.get(b).getYear());
-                    Image poster = null;
-                    //GetMoviePoster
-                    if (posterURL.equals("N/A")) {
-                        poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
-                    }else{
-                        poster = new Image(posterURL);
-                    }
-                    Group blend = makeThePhotoPoster(poster, movieRoll, movieList.get(b).getTitle(), movieList.get(b).getYear());
-                    vBox.getChildren().add(blend);
-                }
+
+                new Thread(() -> loadThreads(movieList, vBox, movieRoll)).start();
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void loadThreads(ArrayList<Movie> movieList,VBox vBox, Image movieRoll) {
+        for (int b = 0; b <= numberOfMoviesPrVBox; b++) {
+            //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
+            String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
+            String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, movieList.get(b).getYear());
+            Image poster = null;
+            //GetMoviePoster
+            if (posterURL.equals("N/A")) {
+                poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+            } else {
+                poster = new Image(posterURL);
+            }
+            Group blend = makeThePhotoPoster(poster, movieRoll, movieList.get(b).getTitle(), movieList.get(b).getYear());
+
+            Platform.runLater(() -> vBox.getChildren().add(blend));
         }
     }
 
