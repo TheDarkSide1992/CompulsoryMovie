@@ -171,8 +171,8 @@ public class MovieWindowController implements Initializable {
     private Group makeThePhotoPoster(Image poster, Image movieRoll, String title, int year) {
         //the racio of a movie poster is 27" x 40"
         //forholdet 1 i bredde og 1,1 i længde i den der er lavet her
-        int width = 180;
-        int height = 198;
+        int width = 192;
+        int height = 210;
 
         //Define bottom and top and set height and width
         ImageView bottom = new ImageView(poster);
