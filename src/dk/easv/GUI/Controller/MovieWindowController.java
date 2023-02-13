@@ -53,7 +53,7 @@ public class MovieWindowController implements Initializable {
 
         getTopAvdRatedMoviesSeen();
         getTopAvdRatedMoviesNotSeen();
-        new Thread(() ->getArrTopMoviesSimilarUsers()).start();
+        new Thread(() ->getArrTopMoviesSimilarUsers()).start(); //Starts new Thread
     }
 
     private void getTopAvdRatedMoviesSeen() {
@@ -108,7 +108,7 @@ public class MovieWindowController implements Initializable {
                 blend.setOnMouseClicked(e ->{
                     System.out.println("movie: " + topMovie.getTitle() + "\t Year: " + topMovie.getYear());
                 });
-                Platform.runLater(() -> vBox3.getChildren().add(blend));
+                Platform.runLater(() -> vBox3.getChildren().add(blend)); //set the FXML elements after Thread
             }
 
         } catch (Exception e) {
