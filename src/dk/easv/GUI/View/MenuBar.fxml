@@ -120,7 +120,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                <children>
-                  <ImageView fitHeight="87.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                  <ImageView fitHeight="87.0" fitWidth="319.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                      <image>
                         <Image url="@Backgrounds/MRS-Icon.png" />
                      </image>
