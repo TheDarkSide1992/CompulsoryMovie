@@ -4,6 +4,7 @@ import dk.easv.BE.Movie;
 import dk.easv.BE.TopMovie;
 import dk.easv.BE.User;
 import dk.easv.GUI.Model.AppModel;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,7 +53,7 @@ public class MovieWindowController implements Initializable {
 
         getTopAvdRatedMoviesSeen();
         getTopAvdRatedMoviesNotSeen();
-        getArrTopMoviesSimilarUsers();
+        new Thread(() ->getArrTopMoviesSimilarUsers()).start(); //Starts new Thread
     }
 
     private void getTopAvdRatedMoviesSeen() {
@@ -107,10 +108,10 @@ public class MovieWindowController implements Initializable {
                 blend.setOnMouseClicked(e ->{
                     System.out.println("movie: " + topMovie.getTitle() + "\t Year: " + topMovie.getYear());
                 });
-                vBox3.getChildren().add(blend);
+                Platform.runLater(() -> vBox3.getChildren().add(blend)); //set the FXML elements after Thread
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -134,24 +135,36 @@ public class MovieWindowController implements Initializable {
             for (int i = 0; i < vBoxes.size(); i++) {
                 VBox vBox = vBoxes.get(i);
                 ArrayList<Movie> movieList = arrayListOfMovieLists.get(i);
-                for (int b = 0; b < numberOfMoviesPrVBox; b++) {
-                    //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
-                    String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
-                    String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, movieList.get(b).getYear());
-                    Image poster = null;
-                    //GetMoviePoster
-                    if (posterURL.equals("N/A")) {
-                        poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
-                    }else{
-                        poster = new Image(posterURL);
+
+                new Thread(() -> {
+                    try {
+                        loadThreads(movieList, vBox, movieRoll);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    Group blend = makeThePhotoPoster(poster, movieRoll, movieList.get(b).getTitle(), movieList.get(b).getYear());
-                    vBox.getChildren().add(blend);
-                }
+                }).start();
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void loadThreads(ArrayList<Movie> movieList,VBox vBox, Image movieRoll) throws Exception{
+        for (int b = 0; b < numberOfMoviesPrVBox; b++) {
+            //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
+            String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
+            String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, movieList.get(b).getYear());
+            Image poster = null;
+            //GetMoviePoster
+            if (posterURL.equals("N/A")) {
+                poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+            } else {
+                poster = new Image(posterURL);
+            }
+            Group blend = makeThePhotoPoster(poster, movieRoll, movieList.get(b).getTitle(), movieList.get(b).getYear());
+
+            Platform.runLater(() -> vBox.getChildren().add(blend));
         }
     }
 
@@ -182,15 +195,15 @@ public class MovieWindowController implements Initializable {
     }
 
     private String movieTitleTrimmed(String title) {
-        String trimmedTitle = title;
+        title.trim();
         String regExSpecialChars = ":<([{\\^=$!|]})?*+.>"; //excluded the sign: -
 
         for (char c: regExSpecialChars.toCharArray()) {
-            if(trimmedTitle.contains(c + "")){
-                trimmedTitle = trimmedTitle.substring(0,trimmedTitle.indexOf(c)).trim();
-                return trimmedTitle;
+            if(title.contains(c + "")){
+                title = title.substring(0,title.indexOf(c)).trim();
+                return title;
             }
         }
-        return trimmedTitle;
+        return title;
     }
 }
