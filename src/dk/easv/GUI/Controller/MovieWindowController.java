@@ -102,7 +102,7 @@ public class MovieWindowController implements Initializable {
                 }else{
                     poster = new Image(posterURL);
                 }
-                Group blend = makeThePhotoPoster(poster, movieRoll);
+                Group blend = makeThePhotoPoster(poster, movieRoll, topMovie.getTitle(), topMovie.getYear());
                 //Set a function to the blended movieRoll Group
                 blend.setOnMouseClicked(e ->{
                     System.out.println("movie: " + topMovie.getTitle() + "\t Year: " + topMovie.getYear());
@@ -145,13 +145,7 @@ public class MovieWindowController implements Initializable {
                     }else{
                         poster = new Image(posterURL);
                     }
-                    Group blend = makeThePhotoPoster(poster, movieRoll);
-
-                    //Set a function to the blended movieRoll Group
-                    int finalB = b;
-                    blend.setOnMouseClicked(e ->{
-                        System.out.println("movie: " + movieList.get(finalB).getTitle() + "\t Year: " + movieList.get(finalB).getYear());
-                });
+                    Group blend = makeThePhotoPoster(poster, movieRoll, movieList.get(b).getTitle(), movieList.get(b).getYear());
                     vBox.getChildren().add(blend);
                 }
             }
@@ -161,7 +155,7 @@ public class MovieWindowController implements Initializable {
         }
     }
 
-    private Group makeThePhotoPoster(Image poster, Image movieRoll) {
+    private Group makeThePhotoPoster(Image poster, Image movieRoll, String title, int year) {
         //the racio of a movie poster is 27" x 40"
         //forholdet 1 i bredde og 1,1 i længde i den der er lavet her
         int width = 180;
@@ -179,6 +173,11 @@ public class MovieWindowController implements Initializable {
                 bottom,
                 top
         );
+        //Set a function to the blended movieRoll Group
+
+        blend.setOnMouseClicked(e ->{
+            System.out.println("movie: " + title + "\t Year: " + year);
+        });
         return blend;
     }
 
@@ -194,6 +193,4 @@ public class MovieWindowController implements Initializable {
         }
         return trimmedTitle;
     }
-
-
 }
