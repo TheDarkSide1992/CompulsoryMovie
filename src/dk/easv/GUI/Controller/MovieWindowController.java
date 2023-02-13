@@ -53,7 +53,7 @@ public class MovieWindowController implements Initializable {
 
         getTopAvdRatedMoviesSeen();
         getTopAvdRatedMoviesNotSeen();
-        getArrTopMoviesSimilarUsers();
+        new Thread(() ->getArrTopMoviesSimilarUsers()).start();
     }
 
     private void getTopAvdRatedMoviesSeen() {
@@ -108,10 +108,10 @@ public class MovieWindowController implements Initializable {
                 blend.setOnMouseClicked(e ->{
                     System.out.println("movie: " + topMovie.getTitle() + "\t Year: " + topMovie.getYear());
                 });
-                vBox3.getChildren().add(blend);
+                Platform.runLater(() -> vBox3.getChildren().add(blend));
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -136,7 +136,13 @@ public class MovieWindowController implements Initializable {
                 VBox vBox = vBoxes.get(i);
                 ArrayList<Movie> movieList = arrayListOfMovieLists.get(i);
 
-                new Thread(() -> loadThreads(movieList, vBox, movieRoll)).start();
+                new Thread(() -> {
+                    try {
+                        loadThreads(movieList, vBox, movieRoll);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
 
         } catch (Exception e) {
@@ -144,8 +150,8 @@ public class MovieWindowController implements Initializable {
         }
     }
 
-    private void loadThreads(ArrayList<Movie> movieList,VBox vBox, Image movieRoll) {
-        for (int b = 0; b <= numberOfMoviesPrVBox; b++) {
+    private void loadThreads(ArrayList<Movie> movieList,VBox vBox, Image movieRoll) throws Exception{
+        for (int b = 0; b < numberOfMoviesPrVBox; b++) {
             //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
             String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
             String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, movieList.get(b).getYear());
@@ -189,15 +195,15 @@ public class MovieWindowController implements Initializable {
     }
 
     private String movieTitleTrimmed(String title) {
-        String trimmedTitle = title;
+        title.trim();
         String regExSpecialChars = ":<([{\\^=$!|]})?*+.>"; //excluded the sign: -
 
         for (char c: regExSpecialChars.toCharArray()) {
-            if(trimmedTitle.contains(c + "")){
-                trimmedTitle = trimmedTitle.substring(0,trimmedTitle.indexOf(c)).trim();
-                return trimmedTitle;
+            if(title.contains(c + "")){
+                title = title.substring(0,title.indexOf(c)).trim();
+                return title;
             }
         }
-        return trimmedTitle;
+        return title;
     }
 }
