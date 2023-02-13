@@ -1,14 +1,12 @@
-package dk.easv.presentation.Model;
+package dk.easv.GUI.Model;
 
-import dk.easv.entities.*;
-import dk.easv.logic.LogicManager;
+import dk.easv.BE.*;
+import dk.easv.BLL.LogicManager;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
 
 public class AppModel {
 
@@ -20,6 +18,9 @@ public class AppModel {
     private final ObservableList<UserSimilarity>  obsSimilarUsers = FXCollections.observableArrayList();
     private final ObservableList<TopMovie> obsTopMoviesSimilarUsers = FXCollections.observableArrayList();
 
+    private final SimpleObjectProperty<User> obsLoggedInUser = new SimpleObjectProperty<>();
+
+    private ArrayList<Movie> arrTopMovieNotSeen = new ArrayList<>();
     public void loadUsers(){
         obsUsers.clear();
         obsUsers.addAll(logic.getAllUsers());
@@ -31,6 +32,9 @@ public class AppModel {
 
         obsTopMovieNotSeen.clear();
         obsTopMovieNotSeen.addAll(logic.getTopAverageRatedMoviesUserDidNotSee(user));
+
+        arrTopMovieNotSeen.clear();
+        arrTopMovieNotSeen.addAll(logic.getTopAverageRatedMoviesUserDidNotSee(user));
 
         obsSimilarUsers.clear();
         obsSimilarUsers.addAll(logic.getTopSimilarUsers(user));
@@ -51,11 +55,44 @@ public class AppModel {
         return obsTopMovieNotSeen;
     }
 
+    public ArrayList<Movie> getArrTopMovieNotSeen() {
+        return arrTopMovieNotSeen;
+    }
+
     public ObservableList<UserSimilarity> getObsSimilarUsers() {
         return obsSimilarUsers;
     }
 
     public ObservableList<TopMovie> getObsTopMoviesSimilarUsers() {
         return obsTopMoviesSimilarUsers;
+    }
+
+    public User getObsLoggedInUser() {
+        return obsLoggedInUser.get();
+    }
+
+    public SimpleObjectProperty<User> obsLoggedInUserProperty() {
+        return obsLoggedInUser;
+    }
+
+    public void setObsLoggedInUser(User obsLoggedInUser) {
+        this.obsLoggedInUser.set(obsLoggedInUser);
+    }
+
+    public boolean loginUserFromUsername(String userName) {
+        User u = logic.getUser(userName);
+        obsLoggedInUser.set(u);
+        if (u==null)
+            return false;
+        else
+            return true;
+    }
+
+    public User getUser(String userName) {
+        return logic.getUser(userName);
+    }
+
+    public String searchMovieGetPoster(String title, int year) {
+        return logic.searchMovieGetPoster(title, year);
     }
 }

@@ -1,4 +1,4 @@
-package dk.easv.entities;
+package dk.easv.BE;
 
 import java.util.ArrayList;
 import java.util.List;

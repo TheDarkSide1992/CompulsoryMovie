@@ -1,10 +1,11 @@
-package dk.easv.dataaccess;
-        import dk.easv.entities.Movie;
+package dk.easv.DAL;
+        import dk.easv.BE.Movie;
 
         import java.io.IOException;
         import java.net.HttpURLConnection;
         import java.net.URL;
         import java.util.ArrayList;
+        import java.util.List;
         import java.util.Scanner;
 
 public class MyOMDBConnector {
@@ -51,7 +52,7 @@ public class MyOMDBConnector {
      * @param query the input the user wrote in the search field
      * @return a list of movies for the user to choose from
      */
-    /**
+
     public List<Movie> searchQuery(String query) {
         List<Movie> searchMovies = new ArrayList<>();
         try { //Set up the connection with the query the user has written
@@ -95,7 +96,7 @@ public class MyOMDBConnector {
         }
         return searchMovies;
     }
-*/
+
     /**
      * When the user chooses a specific Movie from the list provided,
      * that info gets automatically placed into the text fields.
@@ -143,5 +144,40 @@ public class MyOMDBConnector {
      */
     public String getMovieCategories() {
         return C1;
+    }
+
+    public String searchMovieGetPoster(String title, int year) {
+        String posterURL = "";
+        try { //Set up the connection with the query the user has written
+            URL url = new URL("http://www.omdbapi.com/?" + "t=" + title + "&y=" + year + "&apikey=40237601");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+
+            //Checks the response code the server sends back, 200 = OK
+            if (responseCode != 200) {
+                throw new RuntimeException("HttpResponseCode: " + responseCode);
+            } else {
+                StringBuilder informationString = new StringBuilder();
+                Scanner scanner = new Scanner(url.openStream()); //Opens up a Scanner which reads the info retrieved from OMDb
+                while (scanner.hasNext()) {
+                    informationString.append(scanner.nextLine()); //Uses the StringBuilder to append all the lines from the data received
+                }
+                //Close the scanner
+                scanner.close();
+
+                String input = informationString.toString(); //Change the input to a String
+                if(input.contains("Poster")) {
+                    posterURL = input.substring(input.indexOf("Poster\":\"") + 9, input.indexOf("\",\"Rating"));
+                }
+                else {
+                    posterURL = "N/A";
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return posterURL;
     }
 }

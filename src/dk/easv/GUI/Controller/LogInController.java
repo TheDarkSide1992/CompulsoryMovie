@@ -1,15 +1,13 @@
-package dk.easv.presentation.Controller;
+package dk.easv.GUI.Controller;
 
-import dk.easv.logic.LogicManager;
+import dk.easv.BLL.LogicManager;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -17,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
+    @FXML private Label lblErrorMessage;
     @FXML private MFXTextField userId;
     @FXML private MFXButton btnLogIn;
     @FXML private MFXButton btnSignUp;
@@ -33,8 +32,12 @@ public class LogInController implements Initializable {
         btnSignUp.setDisable(false);
     }
 
+
     public void logIn(ActionEvent actionEvent) {
-        if(!userId.getText().trim().equals(passwordField.getText().trim())) return;
+        if(!userId.getText().trim().equals(passwordField.getText().trim())) {
+            lblErrorMessage.setText("Current password does not match this user");
+            return;
+        }
 
         loginSauces = true;
         userString = userId.getText();
@@ -50,8 +53,14 @@ public class LogInController implements Initializable {
     public void checkIfAnyInput(KeyEvent keyEvent) {
         if(!userId.getText().isEmpty() && !passwordField.getText().isEmpty()){
             btnLogIn.setDisable(false);
-        } else {
+        } else if (userId.getText().isEmpty()){
             btnLogIn.setDisable(true);
+            lblErrorMessage.setText("Missing User ID");
+        } else if (passwordField.getText().isEmpty()){
+            btnLogIn.setDisable(true);
+            lblErrorMessage.setText("Missing Password");
+        } else {
+            lblErrorMessage.setText("Missing both User ID & Password");
         }
     }
 

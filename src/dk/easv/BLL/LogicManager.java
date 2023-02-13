@@ -1,21 +1,15 @@
-package dk.easv.logic;
+package dk.easv.BLL;
 
-import dk.easv.dataaccess.DataAccessManager;
-import dk.easv.entities.*;
-import dk.easv.presentation.Controller.LogInController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
+import dk.easv.DAL.DataAccessManager;
+import dk.easv.DAL.MyOMDBConnector;
+import dk.easv.BE.*;
 import java.util.*;
 
 public class LogicManager {
 
     DataAccessManager dataMgr = new DataAccessManager();
 
+    MyOMDBConnector omdb = new MyOMDBConnector();
     public void reloadAllDataFromStorage(){
         dataMgr.updateCacheFromDisk();
     }
@@ -115,23 +109,16 @@ public class LogicManager {
         return favorites;
     }
 
-    public void openNewView(String fxmlName, String displayName) {
-        try{
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(LogInController.class.getResource("/dk/easv/presentation/View/" + fxmlName));
-            //loader.setLocation(LogicManager.class.getResource("/dk/easv/presentation/View/" + fxmlName));
-            BorderPane pane = loader.load();
-            //controller.setModel(super.getModel());
-            //controller.setup();
-            // Create the dialog stage
-            Stage dialogWindow = new Stage();
-            dialogWindow.setTitle(displayName);
-            dialogWindow.initModality(Modality.WINDOW_MODAL);
-            Scene scene = new Scene(pane);
-            dialogWindow.setScene(scene);
-            dialogWindow.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public User getUser(String userName) {
+        try {
+            return dataMgr.getAllUsers().values().stream().filter(u -> u.getName().equals(userName)).findFirst().get();
         }
+        catch (NoSuchElementException e){
+            return null;
+        }
+    }
+
+    public String searchMovieGetPoster(String title, int year) {
+        return omdb.searchMovieGetPoster(title, year);
     }
 }
