@@ -1,5 +1,6 @@
 package dk.easv.GUI.Controller;
 
+import dk.easv.BE.User;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +24,7 @@ public class MenuBarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //No Init
+        lblUerNameId.setText("Georgi Facello");
     }
 
     public void lblHomeClicked(MouseEvent mouseEvent) {
