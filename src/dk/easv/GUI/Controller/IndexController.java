@@ -41,6 +41,7 @@ public class IndexController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Log-In");
         stage.setScene(new Scene(root1));
+        stage.setResizable(false);
         stage.showAndWait();
 
         //TODO Gets data form login controller
@@ -48,7 +49,7 @@ public class IndexController implements Initializable {
         System.out.println(userName);
 
         if(logInController.isLoginSuccessful()){
-            loadTop("Menu.fxml");
+            loadLeft("MenuBar.fxml");
             loadCenter("MovieWindow.fxml");
             //TODO Get USer Data
         } else {
@@ -63,7 +64,8 @@ public class IndexController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/dk/easv/GUI/View/" + file));
-        AnchorPane newScene = loader.load();
+        BorderPane newScene = loader.load();
+
         borderPane.setCenter(newScene);
     }
 

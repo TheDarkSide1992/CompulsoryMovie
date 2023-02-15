@@ -118,11 +118,7 @@ public class LogicManager {
         }
     }
 
-    public String searchAddMovieGetimdbID(String title) {
-        return omdb.searchAddMovieGetimdbID(title);
-    }
-
-    public String searchSelectedMovieGetPosterURL(String imdbID) {
-        return omdb.searchSelectedMovieGetPosterURL(imdbID);
+    public String searchMovieGetPoster(String title, int year) {
+        return omdb.searchMovieGetPoster(title, year);
     }
 }

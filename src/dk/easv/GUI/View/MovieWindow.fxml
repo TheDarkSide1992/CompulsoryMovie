@@ -1,25 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="597.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieWindowController">
-   <children>
-      <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="14.0" prefHeight="555.0" prefWidth="200.0">
-         <content>
-            <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="100.0" />
-         </content>
-      </ScrollPane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="244.0" layoutY="14.0" prefHeight="555.0" prefWidth="200.0">
-         <content>
-            <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="100.0" />
-         </content>
-      </ScrollPane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="484.0" layoutY="14.0" prefHeight="555.0" prefWidth="200.0">
-         <content>
-            <VBox fx:id="vBox3" prefHeight="200.0" prefWidth="100.0" />
-         </content>
-      </ScrollPane>
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="323.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieWindowController">
+   <top>
+      <GridPane style="-fx-background-color: rgba(0, 0, 0, 0.6) " BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="155.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="155.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="155.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lblWatchAgain" text="Watch Again" textFill="WHITE" GridPane.columnIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="lblCheckOut" text="Check These Out" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblRecommend" text="Otheres Recomended" textFill="WHITE" GridPane.columnIndex="5">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="155.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="155.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="155.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ScrollPane vbarPolicy="NEVER" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" GridPane.columnIndex="3">
+               <content>
+                  <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="100.0" />
+               </content>
+            </ScrollPane>
+            <ScrollPane vbarPolicy="NEVER" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <content>
+                  <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="100.0" />
+               </content>
+            </ScrollPane>
+            <ScrollPane  vbarPolicy="NEVER" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" GridPane.columnIndex="5">
+               <content>
+                  <VBox fx:id="vBox3" prefHeight="200.0" prefWidth="100.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

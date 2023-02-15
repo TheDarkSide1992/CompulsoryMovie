@@ -111,10 +111,10 @@ public class MyOMDBConnector {
         return C1;
     }
 
-    public String searchAddMovieGetimdbID(String query) {
-        List<Movie> searchMovies = new ArrayList<>();
+    public String searchMovieGetPoster(String title, int year) {
+        String posterURL = "";
         try { //Set up the connection with the query the user has written
-            URL url = new URL("http://www.omdbapi.com/?" + "s=" + query + "&apikey=40237601");
+            URL url = new URL("http://www.omdbapi.com/?" + "t=" + title + "&y=" + year + "&apikey=40237601");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
@@ -122,57 +122,47 @@ public class MyOMDBConnector {
 
             //Checks the response code the server sends back, 200 = OK
             if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
-            } else {
-                StringBuilder informationString = new StringBuilder();
-                Scanner scanner = new Scanner(url.openStream()); //Opens up a Scanner which reads the info retrieved from OMDb
-                while (scanner.hasNext()) {
-                    informationString.append(scanner.nextLine()); //Uses the StringBuilder to append all the lines from the data received
+                url = new URL("http://www.omdbapi.com/?" + "t=" + title + "&apikey=40237601");
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.connect();
+                responseCode = conn.getResponseCode();
+
+                if (responseCode != 200) {
+                    return "N/A";
+                }else{
+                    return getPoster(url);
                 }
-                //Close the scanner
-                scanner.close();
-
-                String input = informationString.toString(); //Change the input to a String
-                String[] splitSearch = input.split("\\{"); //Split the String into an Array at the start of each "{"
-
-                for (int i = 2; i < splitSearch.length; i++) { //Ignore the first 2 "{" and loop through the rest;
-                    String searchResults;
-                    searchResults = splitSearch[i];
-                    return searchResults.substring(searchResults.indexOf("imdbID\":\"")+11, searchResults.indexOf("\",\"Type"));
-
-                }
+            }else {
+                return getPoster(url);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
-    public String searchSelectedMovieGetPosterURL(String imdbID) {
-        C1 = null;
-        Movie m;
-        try { //Set up the connection with the IMDbID the user has chosen
-            URL url = new URL("http://www.omdbapi.com/?" + "i=tt" + imdbID + "&apikey=40237601");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.connect();
-            int responseCode = conn.getResponseCode();
+    private String getPoster(URL url){
+        String posterURL = "";
+        StringBuilder informationString = new StringBuilder();
+        Scanner scanner = null; //Opens up a Scanner which reads the info retrieved from OMDb
+        try {
+            scanner = new Scanner(url.openStream());
 
-            //Checks the response code the server sends back, 200 = OK
-            if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
-            } else {
-                StringBuilder informationString = new StringBuilder();
-                Scanner scanner = new Scanner(url.openStream()); //Opens up a Scanner which reads the info retrieved from OMDb
-                while (scanner.hasNext()) {
-                    informationString.append(scanner.nextLine()); //Uses the StringBuilder to append all the lines from the data received
-                }
-                //Close the scanner
-                scanner.close();
-                //Map the data into relevant info
-                String poster = informationString.substring(informationString.indexOf("Poster\":\"") + 9, informationString.indexOf("\",\"Rating"));
-                return poster;
+            while (scanner.hasNext()) {
+                informationString.append(scanner.nextLine()); //Uses the StringBuilder to append all the lines from the data received
             }
+            //Close the scanner
+            scanner.close();
+
+            String input = informationString.toString(); //Change the input to a String
+            if(input.contains("Poster")) {
+                posterURL = input.substring(input.indexOf("Poster\":\"") + 9, input.indexOf("\",\"Rating"));
+            }
+            else {
+                posterURL = "N/A";
+            }
+            return posterURL;
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
