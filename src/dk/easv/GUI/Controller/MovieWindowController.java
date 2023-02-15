@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -105,11 +106,8 @@ public class MovieWindowController implements Initializable {
                 //GetMoviePoster
                 if (posterURL.equals("N/A")) {
                     //poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
-                    label = new Label("Tittle: " + movieTitleTrimmed);
-                    poster = null;
                 }else{
                     poster = new Image(posterURL);
-                    label = null;
                 }
                 Group blend = makeThePhotoPoster(poster, movieRoll, topMovie.getTitle(), topMovie.getYear());
                 //Set a function to the blended movieRoll Group
@@ -168,7 +166,7 @@ public class MovieWindowController implements Initializable {
             Image poster = null;
             //GetMoviePoster
             if (posterURL.equals("N/A")) {
-                poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+                //poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
             } else {
                 poster = new Image(posterURL);
             }
@@ -192,10 +190,22 @@ public class MovieWindowController implements Initializable {
         top.setFitHeight(height);
         top.setFitWidth(width);
 
-        Group blend = new Group(
-                bottom,
-                top
-        );
+        Group blend = null;
+
+        if (poster == null) {
+            Label label = new Label("\n         Tittle: \n         " + title +"\n\n\n");
+            label.setStyle("-fx-background-color: grey");
+            blend = new Group(
+                    top,
+                    label
+            );
+        } else {
+            blend = new Group(
+                    bottom,
+                    top
+
+            );
+        }
         //Set a function to the blended movieRoll Group
 
         blend.setOnMouseClicked(e -> {
