@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="772.0" fitWidth="1249.0" layoutX="-40.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../../../../../BaggrundMRS.png" />
+            <Image url="@Backgrounds/BaggrundMRS.png" />
          </image></ImageView>
       <Text fx:id="txtTitle" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="58.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Oswald; -fx-font-style: Normal; -fx-font-weight: 500; -fx-font-size: 46;" text="Text" y="50.0" />
       <ImageView fx:id="imagePoster" fitHeight="474.0" fitWidth="323.0" layoutX="58.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" />
@@ -20,11 +20,11 @@
       <Text fill="WHITE" layoutX="1147.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Inter; -fx-font-style: normal; -fx-font-size: 64;" text="x" textAlignment="JUSTIFY" />
       <ImageView fx:id="imageIMDB" fitHeight="100.0" fitWidth="100.0" layoutX="431.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../StjerneMRS.png" />
+            <Image url="@Backgrounds/StjerneMRS.png" />
          </image></ImageView>
       <ImageView fx:id="imageRTomato" fitHeight="100.0" fitWidth="100.0" layoutX="431.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../Rottentomato.png" />
+            <Image url="@Backgrounds/Rottentomato.png" />
          </image></ImageView>
       <Text fx:id="txtInfo" layoutX="425.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 23; -fx-font-family: Oswald; -fx-font-weight: 500;" text="Text" wrappingWidth="513.0" />
       <Text fx:id="txtDescription" layoutX="30.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 40; -fx-font-weight: 500; -fx-font-family: Oswald;" text="Text" />
