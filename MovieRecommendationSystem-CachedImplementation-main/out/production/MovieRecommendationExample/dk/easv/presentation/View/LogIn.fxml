@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-image: url(/dk/easv/GUI/View/Backgrounds/rust.jpg)" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.LogInController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.presentation.Controller.LogInController">
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="454.0">
          <children>
@@ -27,13 +25,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
+                  <TextField fx:id="userId" onKeyReleased="#checkIfAnyInput" prefWidth="134.0" />
+                  <PasswordField fx:id="passwordField" onKeyReleased="#checkIfAnyInput" GridPane.rowIndex="2" />
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="247.0" text="Password" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <MFXTextField fx:id="userId" minHeight="-Infinity" minWidth="-Infinity" onAction="#logIn" onKeyReleased="#checkIfAnyInput" prefHeight="25.0" prefWidth="200.0" />
-                  <MFXPasswordField fx:id="passwordField" minHeight="-Infinity" minWidth="-Infinity" onAction="#logIn" onKeyReleased="#checkIfAnyInput" prefHeight="25.0" prefWidth="200.0" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <GridPane layoutX="153.0" layoutY="184.0" prefHeight="30.0" prefWidth="159.0">
@@ -45,20 +43,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <MFXButton fx:id="btnLogIn" onAction="#logIn" text="Log-in" />
-                  <MFXButton fx:id="btnSignUp" onAction="#signUp" text="Sign-Up" GridPane.columnIndex="1" /></children>
+                  <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#logIn" text="log - in" />
+                  <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#signUp" text="Sig - Up" GridPane.columnIndex="1" /></children>
             </GridPane>
             <Label layoutX="199.0" layoutY="32.0" text="User ID">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblErrorMessage" layoutX="125.0" layoutY="225.0" prefHeight="17.0" prefWidth="250.0" textFill="RED" />
-            <ImageView fitHeight="85.0" fitWidth="110.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Backgrounds/MRS-Icon.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
    </center>

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
+GridPane{
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-text-fill: white;
+}
+BorderPane{
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-text-fill: white;
+}
+
+.searchField {
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 65%);
+    -fx-background-blend-mode: multiply;
+    -fx-border-color: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 65%);
+}
+
+.label {
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}

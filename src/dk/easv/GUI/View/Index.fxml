@@ -2,5 +2,6 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
+<BorderPane stylesheets="@Main.css" fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0"  style="-fx-background-image: url(/dk/easv/GUI/View/Backgrounds/rust.jpg)" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.IndexController" />
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="850.0" style="-fx-background-image: url(/dk/easv/GUI/View/Backgrounds/rust.jpg);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.IndexController" />
+

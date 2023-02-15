@@ -12,6 +12,41 @@ public class MyOMDBConnector {
 
     public static String C1;
 
+    private String getPoster(String query, int year) throws Exception {
+        String poster = "";
+        try { //Set up the connection with the query the user has written
+
+            URL url = new URL("http://www.omdbapi.com/?" + "t=" + query + "&y=" + year + "&type=movie&apikey=40237601");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+
+            //Checks the response code the server sends back, 200 = OK
+            if (responseCode != 200) {
+                throw new RuntimeException("HttpResponseCode: " + responseCode);
+            } else {
+                StringBuilder informationString = new StringBuilder();
+                Scanner scanner = new Scanner(url.openStream()); //Opens up a Scanner which reads the info retrieved from OMDb
+                while (scanner.hasNext()) {
+                    informationString.append(scanner.nextLine()); //Uses the StringBuilder to append all the lines from the data received
+                }
+                //Close the scanner
+                scanner.close();
+
+                String input = informationString.toString(); //Change the input to a String
+                    //Map the poster of the movie from the search result
+                    poster = input.substring(input.indexOf("Poster\":\"") + 9, input.indexOf("\",\"Ratings"));
+                }
+
+        } catch (Exception e) {
+            throw new Exception(e);
+    }
+        return poster;
+    }
+
+
+
     /**
      * Queries the OMDb for the specific text the person has written in the search field
      * @param query the input the user wrote in the search field
