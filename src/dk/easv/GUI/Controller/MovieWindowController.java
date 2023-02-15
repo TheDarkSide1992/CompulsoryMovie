@@ -18,16 +18,17 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.xml.transform.Result;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 
 public class MovieWindowController implements Initializable {
     @FXML private Label lblWatchAgain;
@@ -109,9 +110,10 @@ public class MovieWindowController implements Initializable {
                 String movieTitleTrimmed = movieTitleTrimmed(topMovie.getTitle());
                 String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, topMovie.getYear());
                 Image poster = null;
+                Label label = null;
                 //GetMoviePoster
                 if (posterURL.equals("N/A")) {
-                    poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+                    //poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
                 }else{
                     poster = new Image(posterURL);
                 }
@@ -129,6 +131,7 @@ public class MovieWindowController implements Initializable {
         }
 
     }
+
 
     private void createListOfVBox() {
         vBoxes = new ArrayList<>();
@@ -171,7 +174,7 @@ public class MovieWindowController implements Initializable {
             Image poster = null;
             //GetMoviePoster
             if (posterURL.equals("N/A")) {
-                poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+                //poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
             } else {
                 poster = new Image(posterURL);
             }
@@ -195,10 +198,23 @@ public class MovieWindowController implements Initializable {
         top.setFitHeight(height);
         top.setFitWidth(width);
 
-        Group blend = new Group(
-                bottom,
-                top
-        );
+        Group blend = null;
+
+        if (poster == null) {
+            Label label = new Label("         Tittle:                  \n         " + title +"\n\n\n\n\n");
+            label.setStyle("-fx-font-scale: 10");
+            label.setStyle("-fx-background-color: grey");
+            blend = new Group(
+                    label,
+                    top
+            );
+        } else {
+            blend = new Group(
+                    bottom,
+                    top
+
+            );
+        }
         //Set a function to the blended movieRoll Group
 
         blend.setOnMouseClicked(e -> {
