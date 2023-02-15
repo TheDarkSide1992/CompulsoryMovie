@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="136.0" style="-fx-background-color: rgba(0, 0, 0, 0.5) " xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MenuBarController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="136.0" style="-fx-background-color: rgba(0, 0, 0, 0.5) " xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MenuBarController">
     <center>
         <GridPane prefHeight="293.0" prefWidth="377.0" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -122,7 +122,7 @@
                <children>
                   <ImageView fitHeight="87.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                      <image>
-                        <Image url="@Backgrounds/MRS-Icon.png" />
+                        <Image url="@../../../../../data/Img/Logoscalleddown.png" />
                      </image>
                   </ImageView>
                </children>
