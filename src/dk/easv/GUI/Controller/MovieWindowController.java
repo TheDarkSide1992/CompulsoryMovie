@@ -13,12 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import javax.xml.transform.Result;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -53,8 +55,13 @@ public class MovieWindowController implements Initializable {
     }
     private void getUserAndLoadData() {
         model.loadUsers();
-        model.loginUserFromUsername("Georgi Facello");
-        model.loadData(model.getUser("Georgi Facello"));
+        String user = LogInController.getUserString();
+        boolean validUser = model.loginUserFromUsername(user);
+        if (validUser == true){
+            model.loadData(model.getUser(user));
+        }else {
+            JOptionPane.showMessageDialog(null, "My Goodness, this is not a valid username: " + user);
+        }
 
         getTopAvdRatedMoviesSeen();
         getTopAvdRatedMoviesNotSeen();

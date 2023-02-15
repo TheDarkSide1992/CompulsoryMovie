@@ -23,7 +23,7 @@ public class LogInController implements Initializable {
 
     private LogicManager logicManager;
     private boolean loginSauces = false;
-    private String userString = "";
+    private static String userString = "";
     private String passwordString = "";
 
     @Override
@@ -38,7 +38,6 @@ public class LogInController implements Initializable {
             lblErrorMessage.setText("Current password does not match this user");
             return;
         }
-
         loginSauces = true;
         userString = userId.getText();
         passwordString = passwordField.getText();
@@ -69,6 +68,6 @@ public class LogInController implements Initializable {
         return loginSauces;
     }
 
-    public String getUserString() {return  userString;}
+    public static String getUserString() {return userString;}
 
 }

@@ -46,7 +46,6 @@ public class IndexController implements Initializable {
 
         //TODO Gets data form login controller
         userName = logInController.getUserString();
-        System.out.println(userName);
 
         if(logInController.isLoginSuccessful()){
             loadLeft("MenuBar.fxml");

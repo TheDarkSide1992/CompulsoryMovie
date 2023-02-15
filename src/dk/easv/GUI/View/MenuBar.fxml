@@ -32,7 +32,7 @@
             <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
                <image>
-                  <Image url="@Backgrounds/Avatar-removebg-preview%20(1).png" />
+                  <Image url="@Backgrounds/Avatar-removebg-preview.png" />
                </image>
                <GridPane.margin>
                   <Insets left="10.0" />
