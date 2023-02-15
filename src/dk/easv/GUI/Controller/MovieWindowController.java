@@ -8,13 +8,18 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import javax.xml.transform.Result;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -107,6 +112,7 @@ public class MovieWindowController implements Initializable {
                 //Set a function to the blended movieRoll Group
                 blend.setOnMouseClicked(e ->{
                     System.out.println("movie: " + topMovie.getTitle() + "\t Year: " + topMovie.getYear());
+                    loadMovieInfo(topMovie.getTitle());
                 });
                 Platform.runLater(() -> vBox3.getChildren().add(blend)); //set the FXML elements after Thread
             }
@@ -188,10 +194,26 @@ public class MovieWindowController implements Initializable {
         );
         //Set a function to the blended movieRoll Group
 
-        blend.setOnMouseClicked(e ->{
+        blend.setOnMouseClicked(e -> {
             System.out.println("movie: " + title + "\t Year: " + year);
+            loadMovieInfo(title);
         });
         return blend;
+    }
+
+    private void loadMovieInfo(String movieTittle){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dk/easv/GUI/View/MovieInfoScreen.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            //LogInController showMovieController = fxmlLoader.getController(); // might not be needed  //Uncomment to get the controller
+            Stage stage = new Stage();
+            stage.setTitle("Show_Movie_Info");
+            stage.setScene(new Scene(root1));
+            stage.setResizable(false);
+            stage.showAndWait();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private String movieTitleTrimmed(String title) {

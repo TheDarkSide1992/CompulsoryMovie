@@ -8592,7 +8592,7 @@
 8593,2000,Mexico City
 8594,1999,The Artist: Rave UN2 the Year 2000
 8595,1998,Billy's Hollywood Screen Kiss
-8596,1995,Seven
+8596,1995,Se7en
 8597,2003,Zero Day
 8598,1992,Once Upon a Time in China 3
 8599,2004,Hilary Duff: Learning to Fly
