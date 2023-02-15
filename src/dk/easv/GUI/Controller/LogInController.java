@@ -53,6 +53,7 @@ public class LogInController implements Initializable {
     public void checkIfAnyInput(KeyEvent keyEvent) {
         if(!userId.getText().isEmpty() && !passwordField.getText().isEmpty()){
             btnLogIn.setDisable(false);
+            lblErrorMessage.setText("");
         } else if (userId.getText().isEmpty()){
             btnLogIn.setDisable(true);
             lblErrorMessage.setText("Missing User ID");

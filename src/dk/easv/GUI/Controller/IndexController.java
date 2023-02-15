@@ -41,6 +41,7 @@ public class IndexController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Log-In");
         stage.setScene(new Scene(root1));
+        stage.setResizable(false);
         stage.showAndWait();
 
         //TODO Gets data form login controller
