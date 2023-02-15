@@ -61,7 +61,8 @@ public class MovieWindowController implements Initializable {
         if (validUser == true){
             model.loadData(model.getUser(user));
         }else {
-            JOptionPane.showMessageDialog(null, "My Goodness, this is not a valid username: " + user);
+            JOptionPane.showMessageDialog(null, "This is not a valid username: " + user + "\nTo test the program you will be registered as: Georgi Facello");
+            model.loadData(model.getUser("Georgi Facello"));
         }
 
         getTopAvdRatedMoviesSeen();
@@ -192,8 +193,10 @@ public class MovieWindowController implements Initializable {
 
         //Define bottom and top and set height and width
         ImageView bottom = new ImageView(poster);
-        bottom.setFitHeight(height);
-        bottom.setFitWidth(width);
+        bottom.setFitHeight(195);
+        bottom.setFitWidth(132);
+        bottom.setX(30);
+        bottom.setY(10);
         ImageView top = new ImageView(movieRoll);
         top.setFitHeight(height);
         top.setFitWidth(width);
@@ -201,9 +204,14 @@ public class MovieWindowController implements Initializable {
         Group blend = null;
 
         if (poster == null) {
-            Label label = new Label("         Tittle:                  \n         " + title +"\n\n\n\n\n");
+            Label label = new Label("  Title:\n  " + title +"\n\n\n\n\n");
             label.setStyle("-fx-font-scale: 10");
             label.setStyle("-fx-background-color: grey");
+            label.setPrefHeight(195);
+            label.setPrefWidth(132);
+            label.setLayoutX(30);
+            label.setLayoutY(10);
+
             blend = new Group(
                     label,
                     top
