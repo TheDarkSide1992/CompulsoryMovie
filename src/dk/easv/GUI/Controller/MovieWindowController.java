@@ -193,8 +193,8 @@ public class MovieWindowController implements Initializable {
         Group blend = null;
 
         if (poster == null) {
-            Label label = new Label("\n         Tittle: \n         " + title +"\n\n\n");
-            label.setStyle("-fx-font-size: 10");
+            Label label = new Label("         Tittle:                  \n         " + title +"\n\n\n\n\n");
+            label.setStyle("-fx-font-scale: 10");
             label.setStyle("-fx-background-color: grey");
             blend = new Group(
                     label,
