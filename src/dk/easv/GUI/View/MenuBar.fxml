@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="260.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MenuBarController">
     <center>
         <GridPane prefHeight="446.0" prefWidth="340.0" stylesheets="@Main.css" BorderPane.alignment="CENTER">
@@ -32,7 +31,7 @@
             <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
                <image>
-                  <Image url="@Backgrounds/Avatar-removebg-preview%20(1).png" />
+                  <Image url="@Backgrounds/Avatar.png" />
                </image>
                <GridPane.margin>
                   <Insets left="10.0" />
