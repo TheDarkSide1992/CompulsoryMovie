@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="323.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieWindowController">
+<BorderPane stylesheets="@Main.css" prefHeight="323.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieWindowController">
    <top>
-      <GridPane style="-fx-background-color: rgba(0, 0, 0, 0.6) " BorderPane.alignment="CENTER">
+      <GridPane prefHeight="70.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="155.0" />
@@ -25,16 +25,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lblWatchAgain" text="Watch Again" textFill="WHITE" GridPane.columnIndex="3">
+            <Label fx:id="lblWatchAgain" text="Watch Again" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="lblCheckOut" text="Check These Out" textFill="WHITE" GridPane.columnIndex="1">
+            <Label fx:id="lblCheckOut" text="Check These Out" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="lblRecommend" text="Otheres Recomended" textFill="WHITE" GridPane.columnIndex="5">
+            <Label fx:id="lblRecommend" text="Otheres Recomended" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="5">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
@@ -57,17 +57,17 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane vbarPolicy="NEVER" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" GridPane.columnIndex="3">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" vbarPolicy="NEVER" GridPane.columnIndex="3">
                <content>
                   <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="100.0" />
                </content>
             </ScrollPane>
-            <ScrollPane vbarPolicy="NEVER" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" vbarPolicy="NEVER" GridPane.columnIndex="1">
                <content>
                   <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="100.0" />
                </content>
             </ScrollPane>
-            <ScrollPane  vbarPolicy="NEVER" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" GridPane.columnIndex="5">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" prefHeight="599.0" prefWidth="200.0" vbarPolicy="NEVER" GridPane.columnIndex="5">
                <content>
                   <VBox fx:id="vBox3" prefHeight="200.0" prefWidth="100.0" />
                </content>
