@@ -112,6 +112,7 @@ public class MovieWindowController implements Initializable {
                 //Set a function to the blended movieRoll Group
                 blend.setOnMouseClicked(e ->{
                     System.out.println("movie: " + topMovie.getTitle() + "\t Year: " + topMovie.getYear());
+                    loadMovieInfo(topMovie.getTitle());
                 });
                 Platform.runLater(() -> vBox3.getChildren().add(blend)); //set the FXML elements after Thread
             }
