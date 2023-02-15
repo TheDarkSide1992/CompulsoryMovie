@@ -19,13 +19,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import javax.xml.transform.Result;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 
 public class MovieWindowController implements Initializable {
     @FXML private Label lblWatchAgain;
@@ -102,11 +101,15 @@ public class MovieWindowController implements Initializable {
                 String movieTitleTrimmed = movieTitleTrimmed(topMovie.getTitle());
                 String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, topMovie.getYear());
                 Image poster = null;
+                Label label = null;
                 //GetMoviePoster
                 if (posterURL.equals("N/A")) {
-                    poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+                    //poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
+                    label = new Label("Tittle: " + movieTitleTrimmed);
+                    poster = null;
                 }else{
                     poster = new Image(posterURL);
+                    label = null;
                 }
                 Group blend = makeThePhotoPoster(poster, movieRoll, topMovie.getTitle(), topMovie.getYear());
                 //Set a function to the blended movieRoll Group
@@ -122,6 +125,7 @@ public class MovieWindowController implements Initializable {
         }
 
     }
+
 
     private void createListOfVBox() {
         vBoxes = new ArrayList<>();
