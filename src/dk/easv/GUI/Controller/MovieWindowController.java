@@ -13,16 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import javax.xml.transform.Result;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
@@ -145,9 +142,14 @@ public class MovieWindowController implements Initializable {
             ArrayList<ArrayList> arrayListOfMovieLists = new ArrayList<>();
             arrayListOfMovieLists.add(topAVGRatedMoviesNotSeen);
             arrayListOfMovieLists.add(topAVGRatedMoviesSeen);
+
             //creating the movieRoll object width movie roll
             InputStream stream = new FileInputStream("data/Img/MovieRollRight.png");
             Image movieRoll = new Image(stream);
+
+            //creating the movieRoll object width movie roll
+            InputStream transparent = new FileInputStream("data/Img/transparent.png");
+            Image transparentimg = new Image(transparent);
 
             for (int i = 0; i < vBoxes.size(); i++) {
                 VBox vBox = vBoxes.get(i);
@@ -155,7 +157,7 @@ public class MovieWindowController implements Initializable {
 
                 new Thread(() -> {
                     try {
-                        loadThreads(movieList, vBox, movieRoll);
+                        loadThreads(movieList, vBox, movieRoll, transparentimg);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -167,7 +169,7 @@ public class MovieWindowController implements Initializable {
         }
     }
 
-    private void loadThreads(ArrayList<Movie> movieList,VBox vBox, Image movieRoll) throws Exception{
+    private void loadThreads(ArrayList<Movie> movieList, VBox vBox, Image movieRoll, Image transparentimg) throws Exception{
         for (int b = 0; b < numberOfMoviesPrVBox; b++) {
             //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
             String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
@@ -180,7 +182,6 @@ public class MovieWindowController implements Initializable {
                 poster = new Image(posterURL);
             }
             Group blend = makeThePhotoPoster(poster, movieRoll, movieList.get(b).getTitle(), movieList.get(b).getYear());
-
             Platform.runLater(() -> vBox.getChildren().add(blend));
         }
     }
@@ -193,10 +194,15 @@ public class MovieWindowController implements Initializable {
 
         //Define bottom and top and set height and width
         ImageView bottom = new ImageView(poster);
-        bottom.setFitHeight(195);
-        bottom.setFitWidth(132);
-        bottom.setX(30);
-        bottom.setY(10);
+        //height minus 7 percent
+        bottom.setFitHeight(height*0.93);
+        //Width minus 31 percent
+        bottom.setFitWidth(width*0.69);
+        //Set start x coordinate. 31/2 = 15
+        bottom.setX(width*0.15);
+        //Set start y coordinate. 7/2 = 4
+        bottom.setY(height*0.04);
+
         ImageView top = new ImageView(movieRoll);
         top.setFitHeight(height);
         top.setFitWidth(width);
@@ -204,7 +210,7 @@ public class MovieWindowController implements Initializable {
         Group blend = null;
 
         if (poster == null) {
-            Label label = new Label("  Title:\n  " + title +"\n\n\n\n\n");
+            Label label = new Label("  Title:\n  " + title);
             label.setStyle("-fx-font-scale: 10");
             label.setStyle("-fx-background-color: grey");
             label.setPrefHeight(195);

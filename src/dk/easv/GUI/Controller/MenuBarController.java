@@ -24,7 +24,8 @@ public class MenuBarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //No Init
-        lblUerNameId.setText("Georgi Facello");
+        String user = LogInController.getUserString();
+        lblUerNameId.setText(user);
     }
 
     public void lblHomeClicked(MouseEvent mouseEvent) {
