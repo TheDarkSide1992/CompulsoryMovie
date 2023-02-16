@@ -1,6 +1,7 @@
 package dk.easv.GUI.Controller;
 
 import dk.easv.BLL.LogicManager;
+import dk.easv.GUI.Model.AppModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,6 +22,8 @@ public class LogInController implements Initializable {
     @FXML private MFXButton btnLogIn;
     @FXML private MFXButton btnSignUp;
     @FXML private MFXPasswordField passwordField;
+
+    private AppModel model = new AppModel();
 
     private LogicManager logicManager;
     private boolean loginSauces = false;
@@ -34,15 +38,29 @@ public class LogInController implements Initializable {
 
 
     public void logIn(ActionEvent actionEvent) {
+
+
+
         if(!userId.getText().trim().equals(passwordField.getText().trim())) {
             lblErrorMessage.setText("Current password does not match this user");
             return;
         }
-        loginSauces = true;
+        model.loadUsers();
         userString = userId.getText();
-        passwordString = passwordField.getText();
-        Stage stage = (Stage) btnLogIn.getScene().getWindow();
-        stage.close();
+        model.loadData(model.getUser(userString));
+        boolean validUser = model.loginUserFromUsername(userString);
+        if (validUser == true){
+            loginSauces = true;
+            passwordString = passwordField.getText();
+
+        }else {
+            lblErrorMessage.setText("User ID or Password is Incorrect");
+        }
+
+    }
+
+    private void closeStage(){
+
     }
 
     public void signUp(ActionEvent actionEvent) {
