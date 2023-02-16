@@ -29,7 +29,7 @@ public class MovieInfoController implements Initializable {
 
     }
 
-    public void setInfoForMovie(String movieTittle){
+    public void setInfoForMovie(String movieTittle, int year){
         tittle = movieTittle;
 
         txtTitle.setText(movieTittle);

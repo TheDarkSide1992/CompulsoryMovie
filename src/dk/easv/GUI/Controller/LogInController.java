@@ -45,7 +45,6 @@ public class LogInController implements Initializable {
             lblErrorMessage.setText("Current password does not match this user");
             return;
         }
-
         model.loadUsers();
         userString = userId.getText();
         model.loadData(model.getUser(userString));
@@ -53,11 +52,14 @@ public class LogInController implements Initializable {
         if (validUser == true){
             loginSauces = true;
             passwordString = passwordField.getText();
-            Stage stage = (Stage) btnLogIn.getScene().getWindow();
-            stage.close();
+
         }else {
             lblErrorMessage.setText("User ID or Password is Incorrect");
         }
+
+    }
+
+    private void closeStage(){
 
     }
 

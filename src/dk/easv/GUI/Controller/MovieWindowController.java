@@ -119,7 +119,7 @@ public class MovieWindowController implements Initializable {
                 //Set a function to the blended movieRoll Group
                 blend.setOnMouseClicked(e ->{
                     System.out.println("movie: " + topMovie.getTitle() + "\t Year: " + topMovie.getYear());
-                    loadMovieInfo(topMovie.getTitle());
+                    loadMovieInfo(topMovie.getTitle(), topMovie.getYear());
                 });
                 Platform.runLater(() -> vBox3.getChildren().add(blend)); //set the FXML elements after Thread
             }
@@ -233,12 +233,12 @@ public class MovieWindowController implements Initializable {
 
         blend.setOnMouseClicked(e -> {
             System.out.println("movie: " + title + "\t Year: " + year);
-            loadMovieInfo(title);
+            loadMovieInfo(title, year);
         });
         return blend;
     }
 
-    private void loadMovieInfo(String movieTittle){
+    private void loadMovieInfo(String movieTittle, int year){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dk/easv/GUI/View/MovieInfoScreen.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
@@ -247,7 +247,7 @@ public class MovieWindowController implements Initializable {
             stage.setTitle("Show_Movie_Info");
             stage.setScene(new Scene(root1));
             stage.setResizable(false);
-            showMovieController.setInfoForMovie(movieTittle);
+            showMovieController.setInfoForMovie(movieTittle, year);
             stage.showAndWait();
 
         } catch (Exception e){
