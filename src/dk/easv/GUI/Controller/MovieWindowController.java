@@ -242,12 +242,14 @@ public class MovieWindowController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dk/easv/GUI/View/MovieInfoScreen.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
-            //LogInController showMovieController = fxmlLoader.getController(); // might not be needed  //Uncomment to get the controller
+            MovieInfoController showMovieController = fxmlLoader.getController(); // might not be needed  //Uncomment to get the controller
             Stage stage = new Stage();
             stage.setTitle("Show_Movie_Info");
             stage.setScene(new Scene(root1));
             stage.setResizable(false);
+            showMovieController.setInfoForMovie(movieTittle);
             stage.showAndWait();
+
         } catch (Exception e){
             e.printStackTrace();
         }
