@@ -233,7 +233,7 @@ public class MovieWindowController implements Initializable {
             );
         }
         //Set a function to the blended movieRoll Group
-
+        //BLAAAA :-)
         blend.setOnMouseClicked(e -> {
             System.out.println("movie: " + title + "\t Year: " + year);
             loadMovieInfo(title, year);
