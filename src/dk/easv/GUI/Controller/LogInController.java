@@ -47,12 +47,11 @@ public class LogInController implements Initializable {
         }
 
         model.loadUsers();
-        String user = LogInController.getUserString();
-        boolean validUser = model.loginUserFromUsername(user);
+        userString = userId.getText();
+        model.loadData(model.getUser(userString));
+        boolean validUser = model.loginUserFromUsername(userString);
         if (validUser == true){
-            model.loadData(model.getUser(user));
             loginSauces = true;
-            userString = userId.getText();
             passwordString = passwordField.getText();
             Stage stage = (Stage) btnLogIn.getScene().getWindow();
             stage.close();
