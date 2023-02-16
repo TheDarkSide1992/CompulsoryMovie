@@ -62,7 +62,15 @@ public class LogInController implements Initializable {
     }
 
     public void signUp(ActionEvent actionEvent) {
-
+        model.loadUsers();
+        model.loadData(model.getUser("Georgi Facello"));
+        boolean validUser = model.loginUserFromUsername("Georgi Facello");
+        if (validUser == true){
+            loginSauces = true;
+            passwordString = "Georgi Facello";
+            Stage stage = (Stage) btnLogIn.getScene().getWindow();
+            stage.close();
+        }
     }
 
     public void checkIfAnyInput(KeyEvent keyEvent) {
