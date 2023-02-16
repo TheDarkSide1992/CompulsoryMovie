@@ -2,6 +2,7 @@ package dk.easv.GUI.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
@@ -15,8 +16,6 @@ public class MovieInfoController implements Initializable {
 
     @FXML private Text txtTitle;
     @FXML private ImageView imagePoster;
-    @FXML private ImageView imageIMDB;
-    @FXML private ImageView imageRTomato;
     @FXML private Text txtInfo;
     @FXML private Text txtDescription;
     @FXML private Text txtIMDB;
@@ -32,9 +31,24 @@ public class MovieInfoController implements Initializable {
     public void setInfoForMovie(String movieTittle, int year){
         tittle = movieTittle;
 
-        txtTitle.setText(movieTittle);
+        txtTitle.setText(movieTittle+"("+year+")");
 
-        //TODO INIT INFO HERE
+        String director="";
+        String writer="";
+        String actor="";
+        String genre="";
+        String runtime="";
+        String ageRestriction="";
+        txtInfo.setText("Director: " + director + "\n" +"Writers: " + writer +"\n" +"Actors: " + actor +"\n"+"Genre: " + genre
+                +"\n"+"Runtime: " + runtime + "\n"+ "Age restriction: "+ ageRestriction);
+        String description="";
+        txtDescription.setText(description);
+        String RTScore="";
+        txtRTomato.setText(RTScore);
+        String ImdbScore = "";
+        txtIMDB.setText(ImdbScore);
+        Image poster = null;
+        imagePoster.setImage(poster);
     }
 
     public void HandleClose(MouseEvent mouseEvent) {
