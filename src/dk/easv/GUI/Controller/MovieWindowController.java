@@ -182,10 +182,7 @@ public class MovieWindowController implements Initializable {
                 poster = new Image(posterURL);
             }
             Group blend = makeThePhotoPoster(poster, movieRoll, movieList.get(b).getTitle(), movieList.get(b).getYear());
-            Platform.runLater(() -> {
-                vBox.getChildren().add(blend);
-                vBox.setStyle("-fx-background-color: transparent");
-            });
+            Platform.runLater(() -> vBox.getChildren().add(blend));
         }
     }
 
