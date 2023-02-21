@@ -238,14 +238,24 @@ public class MovieWindowController implements Initializable {
             System.out.println("movie: " + title + "\t Year: " + year);
             loadMovieInfo(title, year);
         });
+
+        Label L = new Label("");
         Group finalBlend = blend;
         blend.hoverProperty().addListener((observable, oldValue, newValue) -> {
-            Label L = new Label(title + " \n(" + year + ")");
-            L.setLayoutX(width*0.15);
-            L.setLayoutY(height*0.04);
-            finalBlend.getChildren().add(L);
+            if(newValue) {
+                L.setText(title + " \n(" + year + ")");
+                L.setLayoutX(width * 0.15);
+                L.setLayoutY(height * 0.04);
+                finalBlend.getChildren().add(L);
+            } else if (oldValue) {
+                L.setText("");
+                L.setLayoutX(width * 0.15);
+                L.setLayoutY(height * 0.04);
+                finalBlend.getChildren().remove(L);
+            }
 
         });
+
         return blend;
     }
 
