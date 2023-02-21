@@ -202,4 +202,54 @@ public class MyOMDBConnector {
             throw new RuntimeException(e);
         }
     }
+
+    private String getMovieInfo(URL url) {
+        String movieInfo = "";
+        StringBuilder informationString = new StringBuilder();
+        Scanner scanner = null; //Opens up a Scanner which reads the info retrieved from OMDb
+        try {
+            scanner = new Scanner(url.openStream());
+
+            while (scanner.hasNext()) {
+                movieInfo = informationString.append(scanner.nextLine()).toString(); //Uses the StringBuilder to append all the lines from the data received
+            }
+            //Close the scanner
+            scanner.close();
+
+            return movieInfo;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getMovieInfo(String title, int year) {
+        String InfoURL = "";
+        try { //Set up the connection with the query the user has written
+            URL url = new URL("http://www.omdbapi.com/?" + "t=" + title + "&y=" + year + "&apikey=40237601");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+
+            //Checks the response code the server sends back, 200 = OK
+            if (responseCode != 200) {
+                url = new URL("http://www.omdbapi.com/?" + "t=" + title + "&apikey=40237601");
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.connect();
+                responseCode = conn.getResponseCode();
+
+                if (responseCode != 200) {
+                    return "N/A";
+                }else{
+                    return getMovieInfo(url);
+                }
+            }else {
+                return getMovieInfo(url);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

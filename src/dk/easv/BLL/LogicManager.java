@@ -121,4 +121,5 @@ public class LogicManager {
     public String searchMovieGetPoster(String title, int year) {
         return omdb.searchMovieGetPoster(title, year);
     }
+    public String getMovieInfo(String title, int year) {return omdb.getMovieInfo(title,year);}
 }

@@ -21,24 +21,25 @@ public class MovieInfoController implements Initializable {
     @FXML private Text txtIMDB;
     @FXML private Text txtRTomato;
     @FXML private Circle circleClose;
-    private String tittle = "";
+    private String title = "";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public void setInfoForMovie(String movieTittle, int year){
-        tittle = movieTittle;
+    public void setInfoForMovie(String movieTitle, int year){
+        title = movieTitle;
 
-        txtTitle.setText(movieTittle+"("+year+")");
+        txtTitle.setText(movieTitle+"("+year+")");
 
-        String director="";
+        String director= "";
         String writer="";
         String actor="";
         String genre="";
         String runtime="";
         String ageRestriction="";
+
         txtInfo.setText("Director: " + director + "\n" +"Writers: " + writer +"\n" +"Actors: " + actor +"\n"+"Genre: " + genre
                 +"\n"+"Runtime: " + runtime + "\n"+ "Age restriction: "+ ageRestriction);
         String description="";
@@ -50,6 +51,7 @@ public class MovieInfoController implements Initializable {
         Image poster = null;
         imagePoster.setImage(poster);
     }
+
 
     public void HandleClose(MouseEvent mouseEvent) {
         Stage stage = (Stage) circleClose.getScene().getWindow();
