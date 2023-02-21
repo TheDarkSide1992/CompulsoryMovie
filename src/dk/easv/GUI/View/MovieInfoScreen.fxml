@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="Main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieInfoController">
    <children>
       <ImageView fitHeight="500.0" fitWidth="740.0" layoutX="-40.0" pickOnBounds="true">
          <image>
@@ -26,11 +26,11 @@
          <image>
             <Image url="@Backgrounds/Rottentomato.png" />
          </image></ImageView>
-      <ImageView fitHeight="275.0" fitWidth="250.0" layoutX="50.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="BottomRoll" fitHeight="275.0" fitWidth="250.0" layoutX="50.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="txtInfo" layoutX="325.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 23; -fx-font-family: Oswald; -fx-font-weight: 500;" text="Text" wrappingWidth="513.0" />
       <Text fx:id="txtDescription" layoutX="325.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 40; -fx-font-weight: 500; -fx-font-family: Oswald;" text="Text" />
       <Text fx:id="txtIMDB" layoutX="390.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 48; -fx-font-family: Oswald; -fx-font-weight: 500;" text="Text" />
       <Text fx:id="txtRTomato" layoutX="390.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 48; -fx-font-weight: 500; -fx-font-family: Oswald;" text="Text" />
-      <ImageView fitHeight="275.0" fitWidth="250.0" layoutX="50.0" layoutY="-175.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="TopRoll" fitHeight="275.0" fitWidth="250.0" layoutX="50.0" layoutY="-175.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
