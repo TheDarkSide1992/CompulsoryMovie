@@ -13,24 +13,25 @@
          <image>
             <Image url="@Backgrounds/BaggrundMRS.png" />
          </image></ImageView>
-      <Text fx:id="txtTitle" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="325.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Oswald; -fx-font-style: Normal; -fx-font-weight: 500; -fx-font-size: 46;" text="Text" y="50.0" />
-      <ImageView fx:id="imagePoster" fitHeight="275.0" fitWidth="250.0" layoutX="50.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="txtTitle" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="300.0" layoutY="60.0" styleClass="TitleText" text="TitleText" wrappingWidth="300.0" />
+      <ImageView fx:id="imagePoster" fitHeight="275.0" fitWidth="250.0" layoutX="25.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="1119.0" layoutY="8.0" mnemonicParsing="false" opacity="0.01" prefHeight="80.0" prefWidth="85.0" textFill="TRANSPARENT" />
       <Circle fx:id="circleClose" fill="#00000080" layoutX="645.0" layoutY="55.0" onMouseClicked="#HandleClose" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text fill="WHITE" layoutX="630.0" layoutY="70.0" onMouseClicked="#HandleClose" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Inter; -fx-font-style: normal; -fx-font-size: 64;" text="x" textAlignment="JUSTIFY" />
-      <ImageView fx:id="imageIMDB" fitHeight="50.0" fitWidth="50.0" layoutX="325.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+      <Text layoutX="630.0" layoutY="70.0" onMouseClicked="#HandleClose" styleClass="XButton" text="x" textAlignment="JUSTIFY" />
+      <ImageView fx:id="imageIMDB" fitHeight="50.0" fitWidth="50.0" layoutX="300.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Backgrounds/StjerneMRS.png" />
          </image></ImageView>
-      <ImageView fx:id="imageRTomato" fitHeight="50.0" fitWidth="50.0" layoutX="325.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageRTomato" fitHeight="50.0" fitWidth="50.0" layoutX="300.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Backgrounds/Rottentomato.png" />
          </image></ImageView>
-      <ImageView fx:id="BottomRoll" fitHeight="275.0" fitWidth="250.0" layoutX="50.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="txtInfo" layoutX="325.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 23; -fx-font-family: Oswald; -fx-font-weight: 500;" text="Text" wrappingWidth="513.0" />
-      <Text fx:id="txtDescription" layoutX="325.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 40; -fx-font-weight: 500; -fx-font-family: Oswald;" text="Text" />
-      <Text fx:id="txtIMDB" layoutX="390.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 48; -fx-font-family: Oswald; -fx-font-weight: 500;" text="Text" />
-      <Text fx:id="txtRTomato" layoutX="390.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 48; -fx-font-weight: 500; -fx-font-family: Oswald;" text="Text" />
-      <ImageView fx:id="TopRoll" fitHeight="275.0" fitWidth="250.0" layoutX="50.0" layoutY="-175.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="BottomRoll" fitHeight="275.0" fitWidth="250.0" layoutX="25.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="txtInfo" layoutX="300.0" layoutY="288.0" styleClass="InfoText" text="InfoText" />
+      <Text fx:id="txtDescription" layoutX="300.0" layoutY="450.0" styleClass="DescriptionText" text="DescriptionText" />
+      <Text fx:id="txtIMDB" layoutX="365.0" layoutY="158.0" styleClass="RatingText" text="RatingText" />
+      <Text fx:id="txtRTomato" layoutX="365.0" layoutY="235.0" styleClass="RatingText" text="RatingText" />
+      <ImageView fx:id="TopRoll" fitHeight="275.0" fitWidth="250.0" layoutX="25.0" layoutY="-175.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="TextYear" layoutX="300.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="RatingText" text="TextYear" />
    </children>
 </AnchorPane>

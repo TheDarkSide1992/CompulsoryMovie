@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 public class MovieInfoController implements Initializable {
 
     public ImageView BottomRoll, TopRoll;
+    public Text TextYear;
     @FXML
     private Text txtTitle;
     @FXML
