@@ -1,5 +1,6 @@
 package dk.easv.GUI.Controller;
 
+import dk.easv.GUI.Model.MovieInfoModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -22,34 +23,40 @@ public class MovieInfoController implements Initializable {
     @FXML private Text txtRTomato;
     @FXML private Circle circleClose;
     private String title = "";
+    MovieInfoModel movieInfoModel = new MovieInfoModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public void setInfoForMovie(String movieTitle, int year){
+    public void setInfoForMovie(String movieTitle, int year) {
         title = movieTitle;
+        txtTitle.setText(movieTitle + "(" + year + ")");
+        String movieInfoString = movieInfoModel.getMovieInfo(title, year);
 
-        txtTitle.setText(movieTitle+"("+year+")");
 
-        String director= "";
-        String writer="";
-        String actor="";
-        String genre="";
-        String runtime="";
-        String ageRestriction="";
+        String director = movieInfoString.substring(movieInfoString.indexOf("Director") + 11, movieInfoString.indexOf("Writer") - 3);
+        String writer = movieInfoString.substring(movieInfoString.indexOf("Writer") + 9, movieInfoString.indexOf("Actors") - 3);
+        String actor = movieInfoString.substring(movieInfoString.indexOf("Actors") + 9, movieInfoString.indexOf("Plot") - 3);
+        String genre = movieInfoString.substring(movieInfoString.indexOf("Genre") + 8, movieInfoString.indexOf("Director") - 3);
+        String runtime = movieInfoString.substring(movieInfoString.indexOf("Runtime") + 10, movieInfoString.indexOf("Genre") - 3);
+        String ageRestriction = movieInfoString.substring(movieInfoString.indexOf("Rated") + 8, movieInfoString.indexOf("Released") - 3);
 
-        txtInfo.setText("Director: " + director + "\n" +"Writers: " + writer +"\n" +"Actors: " + actor +"\n"+"Genre: " + genre
-                +"\n"+"Runtime: " + runtime + "\n"+ "Age restriction: "+ ageRestriction);
-        String description="";
+        txtInfo.setText("Director: " + director + "\n" + "Writers: " + writer + "\n" + "Actors: " + actor + "\n" + "Genre: " + genre
+                + "\n" + "Runtime: " + runtime + "\n" + "Age restriction: " + ageRestriction);
+        String description = movieInfoString.substring(movieInfoString.indexOf("Plot") + 7, movieInfoString.indexOf("Language") - 3);
         txtDescription.setText(description);
-        String RTScore="";
+        String RTScore = null;
+        if (movieInfoString.contains("Rotten Tomatoes")) {
+            RTScore = movieInfoString.substring(movieInfoString.indexOf("Rotten Tomatoes")+26, movieInfoString.indexOf("%")+1);
+        }
+        else {
+            RTScore = "N/A";
+        }
         txtRTomato.setText(RTScore);
-        String ImdbScore = "";
+        String ImdbScore = movieInfoString.substring(movieInfoString.indexOf("imdbRating") + 13, movieInfoString.indexOf("imdbVotes") - 3);
         txtIMDB.setText(ImdbScore);
-        Image poster = null;
-        imagePoster.setImage(poster);
     }
 
 
