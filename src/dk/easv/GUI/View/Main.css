@@ -19,6 +19,7 @@ BorderPane{
     -fx-background-blend-mode: multiply;
     -fx-border-color: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 65%);
     -fx-font-size: 22;
+
 }
 
 .label {
@@ -29,4 +30,35 @@ BorderPane{
 
 #borderpane {
     -fx-background-image: url(/dk/easv/GUI/View/Backgrounds/rust.jpg)
+}
+
+.RatingText {
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-fill: WHITE;
+    -fx-font-size: 24;
+}
+
+.TitleText {
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-fill: WHITE;
+    -fx-font-size: 46;
+}
+
+.InfoText {
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-fill: WHITE;
+    -fx-font-size: 22;
+}
+
+.DescriptionText {
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-fill: WHITE;
+    -fx-font-size: 30;
+}
+
+.XButton {
+    -fx-font-family: Inter;
+    -fx-font-style: normal;
+    -fx-font-size: 64;
+    -fx-fill: WHITE;
 }
