@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import javax.swing.text.Style;
 import javax.xml.transform.Result;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -236,12 +237,10 @@ public class MovieWindowController implements Initializable {
             if(newValue) {
                 L.setText(title + " \n(" + year + ")");
                 L.setLayoutX(width * 0.15);
-                L.setLayoutY(height * 0.04);
+                L.setLayoutY(height * 0.64);
+                L.setStyle("-fx-background-color: rgba(0, 0, 0, 15);");
                 finalBlend.getChildren().add(L);
             } else if (oldValue) {
-                L.setText("");
-                L.setLayoutX(width * 0.15);
-                L.setLayoutY(height * 0.04);
                 finalBlend.getChildren().remove(L);
             }
 
