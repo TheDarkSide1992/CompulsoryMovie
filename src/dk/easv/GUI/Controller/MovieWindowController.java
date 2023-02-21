@@ -239,7 +239,6 @@ public class MovieWindowController implements Initializable {
                 L.setLayoutX(width * 0.15);
                 L.setLayoutY(height * 0.64);
                 L.setStyle("-fx-background-color: rgba(0, 0, 0, 15);");
-                //rgba(0, 0, 0, 0.25);
                 finalBlend.getChildren().add(L);
             } else if (oldValue) {
                 finalBlend.getChildren().remove(L);
