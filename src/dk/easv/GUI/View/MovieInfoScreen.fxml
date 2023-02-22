@@ -22,15 +22,15 @@
          <image>
             <Image url="@Backgrounds/StjerneMRS.png" />
          </image></ImageView>
-      <ImageView fx:id="imageRTomato" fitHeight="50.0" fitWidth="50.0" layoutX="300.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageRTomato" fitHeight="50.0" fitWidth="50.0" layoutX="300.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Backgrounds/Rottentomato.png" />
          </image></ImageView>
       <ImageView fx:id="BottomRoll" fitHeight="275.0" fitWidth="250.0" layoutX="25.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="txtInfo" layoutX="300.0" layoutY="288.0" styleClass="InfoText" text="InfoText" />
-      <Text fx:id="txtDescription" layoutX="300.0" layoutY="450.0" styleClass="DescriptionText" text="DescriptionText" />
+      <Text fx:id="txtInfo" layoutX="300.0" layoutY="270.0" styleClass="InfoText" text="InfoText" />
+      <Text fx:id="txtDescription" layoutX="300.0" layoutY="420.0" styleClass="DescriptionText" text="DescriptionText" wrappingWidth="380"/>
       <Text fx:id="txtIMDB" layoutX="365.0" layoutY="158.0" styleClass="RatingText" text="RatingText" />
-      <Text fx:id="txtRTomato" layoutX="365.0" layoutY="235.0" styleClass="RatingText" text="RatingText" />
+      <Text fx:id="txtRTomato" layoutX="365.0" layoutY="210.0" styleClass="RatingText" text="RatingText" />
       <ImageView fx:id="TopRoll" fitHeight="275.0" fitWidth="250.0" layoutX="25.0" layoutY="-175.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="TextYear" layoutX="300.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="RatingText" text="TextYear" />
    </children>

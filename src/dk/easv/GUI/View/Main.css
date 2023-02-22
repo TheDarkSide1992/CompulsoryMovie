@@ -41,19 +41,19 @@ BorderPane{
 .TitleText {
     -fx-font-family: 'Oswald', sans-serif;
     -fx-fill: WHITE;
-    -fx-font-size: 46;
+    -fx-font-size: 35;
 }
 
 .InfoText {
     -fx-font-family: 'Oswald', sans-serif;
     -fx-fill: WHITE;
-    -fx-font-size: 22;
+    -fx-font-size: 12;
 }
 
 .DescriptionText {
     -fx-font-family: 'Oswald', sans-serif;
     -fx-fill: WHITE;
-    -fx-font-size: 30;
+    -fx-font-size: 18;
 }
 
 .XButton {
