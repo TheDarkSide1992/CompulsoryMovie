@@ -32,10 +32,14 @@ import java.util.ResourceBundle;
 
 
 public class MovieWindowController implements Initializable {
-    @FXML private Label lblWatchAgain;
-    @FXML private Label lblCheckOut;
-    @FXML private Label lblRecommend;
-    @FXML private VBox vBox1, vBox2, vBox3;
+    @FXML
+    private Label lblWatchAgain;
+    @FXML
+    private Label lblCheckOut;
+    @FXML
+    private Label lblRecommend;
+    @FXML
+    private VBox vBox1, vBox2, vBox3;
     private AppModel model = new AppModel();
 
     private ArrayList<Movie> movies = new ArrayList<>();
@@ -48,6 +52,7 @@ public class MovieWindowController implements Initializable {
     private ObservableList<User> users = FXCollections.observableArrayList();
     private ArrayList<VBox> vBoxes;
     private int numberOfMoviesPrVBox;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         numberOfMoviesPrVBox = 20;
@@ -55,20 +60,21 @@ public class MovieWindowController implements Initializable {
         createListOfVBox();
         loadImages();
     }
+
     private void getUserAndLoadData() {
         model.loadUsers();
         String user = LogInController.getUserString();
         boolean validUser = model.loginUserFromUsername(user);
-        if (validUser == true){
+        if (validUser == true) {
             model.loadData(model.getUser(user));
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "This is not a valid username: " + user + "\nTo test the program you will be registered as: Georgi Facello");
             model.loadData(model.getUser("Georgi Facello"));
         }
 
         getTopAvdRatedMoviesSeen();
         getTopAvdRatedMoviesNotSeen();
-        new Thread(() ->getArrTopMoviesSimilarUsers()).start(); //Starts new Thread
+        new Thread(() -> getArrTopMoviesSimilarUsers()).start(); //Starts new Thread
     }
 
     private void getTopAvdRatedMoviesSeen() {
@@ -82,6 +88,7 @@ public class MovieWindowController implements Initializable {
             }
         }
     }
+
     private void getTopAvdRatedMoviesNotSeen() {
         movies.clear();
         movies = model.getArrTopMovieNotSeen();
@@ -107,7 +114,7 @@ public class MovieWindowController implements Initializable {
             InputStream stream = null;
             stream = new FileInputStream("data/Img/MovieRollRight.png");
             Image movieRoll = new Image(stream);
-            for (TopMovie topMovie: topMoviesFromSimilarUsers) {
+            for (TopMovie topMovie : topMoviesFromSimilarUsers) {
                 //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
                 String movieTitleTrimmed = movieTitleTrimmed(topMovie.getTitle());
                 String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, topMovie.getYear());
@@ -120,7 +127,7 @@ public class MovieWindowController implements Initializable {
                 Group blend = makeThePhotoPoster(poster, movieRoll, topMovie.getTitle(), topMovie.getYear());
                 //Set a function to the blended movieRoll Group
                 Image finalPoster = poster;
-                blend.setOnMouseClicked(e ->{
+                blend.setOnMouseClicked(e -> {
                     loadMovieInfo(topMovie.getTitle(), topMovie.getYear(), finalPoster);
                 });
                 Platform.runLater(() -> vBox3.getChildren().add(blend)); //set the FXML elements after Thread
@@ -166,7 +173,7 @@ public class MovieWindowController implements Initializable {
         }
     }
 
-    private void loadThreads(ArrayList<Movie> movieList,VBox vBox, Image movieRoll) throws Exception{
+    private void loadThreads(ArrayList<Movie> movieList, VBox vBox, Image movieRoll) throws Exception {
         for (int b = 0; b < numberOfMoviesPrVBox; b++) {
             //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
             String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
@@ -203,7 +210,7 @@ public class MovieWindowController implements Initializable {
         Group blend = null;
 
         if (poster == null) {
-            Label label = new Label("  Title:\n  " + title +"\n\n\n\n\n");
+            Label label = new Label("  Title:\n  " + title + "\n\n\n\n\n");
             label.setStyle("-fx-font-scale: 10");
             label.setStyle("-fx-background-color: grey");
             label.setPrefHeight(195);
@@ -232,7 +239,7 @@ public class MovieWindowController implements Initializable {
         Label L = new Label("");
         Group finalBlend = blend;
         blend.hoverProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue) {
+            if (newValue) {
                 L.setText(title + " \n(" + year + ")");
                 L.setLayoutX(width * 0.15);
                 L.setLayoutY(height * 0.64);
@@ -247,7 +254,7 @@ public class MovieWindowController implements Initializable {
         return blend;
     }
 
-    private void loadMovieInfo(String movieTittle, int year, Image poster){
+    private void loadMovieInfo(String movieTittle, int year, Image poster) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dk/easv/GUI/View/MovieInfoScreen.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
@@ -259,7 +266,7 @@ public class MovieWindowController implements Initializable {
             showMovieController.setInfoForMovie(movieTittle, year, poster);
             stage.showAndWait();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -268,9 +275,9 @@ public class MovieWindowController implements Initializable {
         title.trim();
         String regExSpecialChars = ":<([{\\^=$!|]})?*+.>"; //excluded the sign: -
 
-        for (char c: regExSpecialChars.toCharArray()) {
-            if(title.contains(c + "")){
-                title = title.substring(0,title.indexOf(c)).trim();
+        for (char c : regExSpecialChars.toCharArray()) {
+            if (title.contains(c + "")) {
+                title = title.substring(0, title.indexOf(c)).trim();
                 return title;
             }
         }
