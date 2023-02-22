@@ -114,15 +114,14 @@ public class MovieWindowController implements Initializable {
                 Image poster = null;
                 Label label = null;
                 //GetMoviePoster
-                if (posterURL.equals("N/A")) {
-                    //poster = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/2048px-Orange_question_mark.svg.png");
-                }else{
+                if (!posterURL.equals("N/A")) {
                     poster = new Image(posterURL);
                 }
                 Group blend = makeThePhotoPoster(poster, movieRoll, topMovie.getTitle(), topMovie.getYear());
                 //Set a function to the blended movieRoll Group
+                Image finalPoster = poster;
                 blend.setOnMouseClicked(e ->{
-                    loadMovieInfo(topMovie.getTitle(), topMovie.getYear());
+                    loadMovieInfo(topMovie.getTitle(), topMovie.getYear(), finalPoster);
                 });
                 Platform.runLater(() -> vBox3.getChildren().add(blend)); //set the FXML elements after Thread
             }
@@ -226,7 +225,8 @@ public class MovieWindowController implements Initializable {
         //Set a function to the blended movieRoll Group
 
         blend.setOnMouseClicked(e -> {
-            loadMovieInfo(title, year);
+            loadMovieInfo(title, year, poster);
+
         });
 
         Label L = new Label("");
@@ -236,7 +236,7 @@ public class MovieWindowController implements Initializable {
                 L.setText(title + " \n(" + year + ")");
                 L.setLayoutX(width * 0.15);
                 L.setLayoutY(height * 0.64);
-                L.setStyle("-fx-background-color: rgba(0, 0, 0, 15);");
+                L.setStyle("-fx-background-color: rgba(0, 0, 0, 0.4);");
                 finalBlend.getChildren().add(L);
             } else if (oldValue) {
                 finalBlend.getChildren().remove(L);
@@ -247,7 +247,7 @@ public class MovieWindowController implements Initializable {
         return blend;
     }
 
-    private void loadMovieInfo(String movieTittle, int year){
+    private void loadMovieInfo(String movieTittle, int year, Image poster){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dk/easv/GUI/View/MovieInfoScreen.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
@@ -256,7 +256,7 @@ public class MovieWindowController implements Initializable {
             stage.setTitle("Show_Movie_Info");
             stage.setScene(new Scene(root1));
             stage.setResizable(false);
-            showMovieController.setInfoForMovie(movieTittle, year);
+            showMovieController.setInfoForMovie(movieTittle, year, poster);
             stage.showAndWait();
 
         } catch (Exception e){

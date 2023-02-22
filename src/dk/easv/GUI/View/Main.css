@@ -11,6 +11,13 @@ BorderPane{
     -fx-background-color: rgba(0, 0, 0, 0.3);
 }
 
+AnchorPane{
+    -fx-font-family: 'Oswald', sans-serif;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+
 .searchField {
     -fx-font-family: 'Oswald', sans-serif;
     -fx-prompt-text-fill: white;
@@ -26,6 +33,10 @@ BorderPane{
     -fx-font-family: 'Oswald', sans-serif;
     -fx-text-fill: white;
     -fx-font-size: 22;
+}
+
+#borderPane1{
+    -fx-background-color: rgba(0, 0, 0, 0.3);
 }
 
 #borderpane {

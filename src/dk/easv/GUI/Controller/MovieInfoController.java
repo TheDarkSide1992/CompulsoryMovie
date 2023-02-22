@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class MovieInfoController implements Initializable {
     
     @FXML private Text txtTitle;
-    @FXML private ImageView imagePoster;
+    @FXML private ImageView middleRoll, posterView;
     @FXML private Text txtInfo;
     @FXML private Text txtDescription;
     @FXML private Text txtIMDB;
@@ -39,7 +39,12 @@ public class MovieInfoController implements Initializable {
         placeRolls();
     }
 
-    public void setInfoForMovie(String movieTitle, int year) {
+    public void setInfoForMovie(String movieTitle, int year, Image poster) {
+        posterView.setImage(poster);
+        posterView.setFitHeight(240);
+        posterView.setFitWidth(200);
+        posterView.setX(20);
+        posterView.setY(-37);
         title = movieTitle;
         txtTitle.setText(movieTitle);
         TextYear.setText(String.valueOf(year));
@@ -90,9 +95,10 @@ public class MovieInfoController implements Initializable {
     private void placeRolls() {
         try {
             InputStream stream = new FileInputStream("data/Img/MovieRollRight.png");
-            Image bottom = new Image(stream);
-            BottomRoll.setImage(bottom);
-            TopRoll.setImage(bottom);
+            Image movieRoll = new Image(stream);
+            BottomRoll.setImage(movieRoll);
+            TopRoll.setImage(movieRoll);
+            middleRoll.setImage(movieRoll);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
