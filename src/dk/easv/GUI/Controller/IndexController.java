@@ -41,6 +41,7 @@ public class IndexController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Log-In");
         stage.setScene(new Scene(root1));
+        stage.setOnCloseRequest(event -> System.exit(0));
         stage.setResizable(false);
         stage.showAndWait();
 
