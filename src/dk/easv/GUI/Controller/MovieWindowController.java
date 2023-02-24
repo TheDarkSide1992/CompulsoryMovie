@@ -13,17 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import javax.swing.text.Style;
-import javax.xml.transform.Result;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
@@ -32,9 +28,6 @@ import java.util.ResourceBundle;
 
 
 public class MovieWindowController implements Initializable {
-    @FXML private Label lblWatchAgain;
-    @FXML private Label lblCheckOut;
-    @FXML private Label lblRecommend;
     @FXML private VBox vBox1, vBox2, vBox3;
     private AppModel model = new AppModel();
 
@@ -103,6 +96,10 @@ public class MovieWindowController implements Initializable {
                 topMoviesFromSimilarUsers.add(topMovie);
             }
         }
+        setPostersForTop();
+    }
+
+    private void setPostersForTop() {
         try {
             InputStream stream = null;
             stream = new FileInputStream("data/Img/MovieRollRight.png");
@@ -127,7 +124,7 @@ public class MovieWindowController implements Initializable {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }

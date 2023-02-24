@@ -44,13 +44,13 @@ public class IndexController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
 
-        //TODO Gets data form login controller
+        //Gets data form login controller
         userName = logInController.getUserString();
 
         if(logInController.isLoginSuccessful()){
             loadLeft("MenuBar.fxml");
             loadCenter("MovieWindow.fxml");
-            //TODO Get USer Data
+
         } else {
             System.exit(0);
         }
