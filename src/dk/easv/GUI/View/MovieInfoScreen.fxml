@@ -3,16 +3,18 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.BorderPane?>
-<BorderPane stylesheets="@Main.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0"  xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieInfoController">
+<AnchorPane id="Anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieInfoController">
    <children>
       <ImageView fitHeight="500.0" fitWidth="740.0" layoutX="-40.0" pickOnBounds="true">
          <image>
             <Image url="@Backgrounds/BaggrundMRS.png" />
          </image></ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="700.0" />
       <Text fx:id="txtTitle" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="300.0" layoutY="60.0" styleClass="TitleText" text="TitleText" wrappingWidth="300.0" />
       <ImageView fx:id="posterView" fitHeight="150.0" fitWidth="200.0" layoutX="50.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="middleRoll" fitHeight="275.0" fitWidth="250.0" layoutX="25.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
@@ -35,4 +37,4 @@
       <ImageView fx:id="TopRoll" fitHeight="275.0" fitWidth="250.0" layoutX="25.0" layoutY="-150.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="TextYear" layoutX="300.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="RatingText" text="TextYear" />
    </children>
-</BorderPane>
+</AnchorPane>

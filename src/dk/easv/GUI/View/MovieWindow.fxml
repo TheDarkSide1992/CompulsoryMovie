@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@Main.css" prefHeight="323.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieWindowController">
+<BorderPane prefHeight="323.0" prefWidth="541.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.GUI.Controller.MovieWindowController">
    <top>
       <GridPane prefHeight="70.0" BorderPane.alignment="CENTER">
         <columnConstraints>

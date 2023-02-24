@@ -38,7 +38,9 @@ AnchorPane{
 #borderPane1{
     -fx-background-color: rgba(0, 0, 0, 0.3);
 }
-
+#Anchor{
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+}
 #borderpane {
     -fx-background-image: url(/dk/easv/GUI/View/Backgrounds/rust.jpg)
 }
