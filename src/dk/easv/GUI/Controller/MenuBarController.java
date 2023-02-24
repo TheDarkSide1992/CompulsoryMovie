@@ -45,5 +45,6 @@ public class MenuBarController implements Initializable {
 
     public void lblSettingsClicked(MouseEvent mouseEvent) {
         System.out.println("Going to settings");
+        System.exit(0);
     }
 }

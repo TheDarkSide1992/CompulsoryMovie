@@ -51,11 +51,11 @@ public class MovieWindowController implements Initializable {
 
     private ObservableList<User> users = FXCollections.observableArrayList();
     private ArrayList<VBox> vBoxes;
-    private int numberOfMoviesPrVBox;
+    //private int numberOfMoviesPrVBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        numberOfMoviesPrVBox = 20;
+        //numberOfMoviesPrVBox = 20;
         getUserAndLoadData();
         createListOfVBox();
         loadImages();
@@ -82,7 +82,7 @@ public class MovieWindowController implements Initializable {
         movies = model.getArrTopMovieSeen();
         topAVGRatedMoviesSeen = new ArrayList<>();
         if (movies != null) {
-            for (int i = 0; i < numberOfMoviesPrVBox; i++) {
+            for (int i = 0; i < movies.size(); i++) {
                 Movie movie = movies.get(i);
                 topAVGRatedMoviesSeen.add(movie);
             }
@@ -94,7 +94,7 @@ public class MovieWindowController implements Initializable {
         movies = model.getArrTopMovieNotSeen();
         topAVGRatedMoviesNotSeen = new ArrayList<>();
         if (movies != null) {
-            for (int i = 0; i < numberOfMoviesPrVBox; i++) {
+            for (int i = 0; i < movies.size(); i++) {
                 Movie movie = movies.get(i);
                 topAVGRatedMoviesNotSeen.add(movie);
             }
@@ -105,7 +105,7 @@ public class MovieWindowController implements Initializable {
         ArrayList<TopMovie> movies = model.getArrTopMoviesSimilarUsers();
         topMoviesFromSimilarUsers = new ArrayList<TopMovie>();
         if (movies != null) {
-            for (int i = 0; i < numberOfMoviesPrVBox; i++) {
+            for (int i = 0; i < movies.size(); i++) {
                 TopMovie topMovie = movies.get(i);
                 topMoviesFromSimilarUsers.add(topMovie);
             }
@@ -174,7 +174,7 @@ public class MovieWindowController implements Initializable {
     }
 
     private void loadThreads(ArrayList<Movie> movieList, VBox vBox, Image movieRoll) throws Exception {
-        for (int b = 0; b < numberOfMoviesPrVBox; b++) {
+        for (int b = 0; b < movieList.size(); b++) {
             //OMDB does not handle series, It is an experiment with the "movieTitleTrimmed()" method that removes everything after a special character
             String movieTitleTrimmed = movieTitleTrimmed(movieList.get(b).getTitle());
             String posterURL = model.searchMovieGetPoster(movieTitleTrimmed, movieList.get(b).getYear());
