@@ -65,6 +65,7 @@ public class LogInController implements Initializable {
         model.loadUsers();
         model.loadData(model.getUser("Georgi Facello"));
         boolean validUser = model.loginUserFromUsername("Georgi Facello");
+        userString = "Georgi Facello";
         if (validUser == true){
             loginSauces = true;
             passwordString = "Georgi Facello";
