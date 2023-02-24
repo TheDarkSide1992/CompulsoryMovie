@@ -14,6 +14,7 @@ public class Main extends Application {
         primaryStage.setTitle("Movie Recommendation System");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(event -> System.exit(0));
         primaryStage.show();
     }
 
